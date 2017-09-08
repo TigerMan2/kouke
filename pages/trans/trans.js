@@ -10,6 +10,8 @@ Page({
   data: {
     // tab切换  
     currentTab: 0,
+    currentTab1: 0,
+
     yinlian:'41.21',//银联
     wx:'26.33',//微信
     zfb:'18.75',//支付宝
@@ -110,9 +112,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    wx.showToast({
-      title: '上拉',
-    })
+    
   },
 
   /**
@@ -176,6 +176,7 @@ Page({
     })
   },
   /**
+   * 支付方式
    * 点击切换tabbar
    */
   swichNav: function (e) {
@@ -204,6 +205,22 @@ Page({
         });
         console.log('11111111');
       }
+    }
+  },
+  /**
+   * 地区占比
+   * 点击切换tabbar
+   */
+  swichTab: function (e) {
+
+    var that = this;
+
+    if (this.data.currentTab1 === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab1: e.target.dataset.current,
+      });
     }
   },
   /**

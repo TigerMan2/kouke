@@ -10,3 +10,9 @@
 .red{
   background-color: #EB0F77;
 }
+.up{
+  color: #297EFC;
+}
+.down{
+  color: red;
+}

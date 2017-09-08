@@ -136,6 +136,19 @@
     </view>  
   </view>
 
+  <!-- 今日地区占比 -->
+  <view class="paytype">
+    <text class="title-text">今日地区占比</text> 
+    <view class="swiper-tab">  
+      <view class="swiper-tab-list {{currentTab1==0 ? 'on' : ''}}" data-current="0" bindtap="swichTab">消费占比</view>  
+      <view class="swiper-tab-list {{currentTab1==1 ? 'on' : ''}}" data-current="1" bindtap="swichTab">商户数占比</view>
+    </view>
+    <view class="swiper-box">  
+        <view class="content">
+          
+        </view>  
+    </view>  
+  </view>
 
 
 

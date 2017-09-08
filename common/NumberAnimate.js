@@ -1,4 +1,3 @@
-
 // 数字跳动js
 'use strick';
 class NumberAnimate{
