@@ -1,0 +1,142 @@
+<!--pages/trans/trans.wxml-->
+ <view class="container"> 
+  <!-- 今日成功交易流水 -->
+  <view class="transflow">
+    <view class="transflow_title">今日成功交易流水(元)</view>
+    <view class="num">{{transNo}}</view>
+    <view class="trans_all">
+      <view class="order_all">
+        <text>发起交易订单(笔)</text>
+        <view class="order_no">86325</view>
+        <view class="rate">6.34%</view>
+      </view>
+      <view class="order_all">
+        <text>成功交易订单(笔)</text>
+        <view class="order_no">56637</view>
+        <view class="rate">1.21%</view>
+      </view>
+      <view class="order_all" style="border-right: none;">
+        <text>交易成功率</text>
+        <view class="order_no">72.3%</view>
+        <view class="rate" style="color:red;">2.83%</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日成功交易流水趋势图 -->
+  <view class="transchart">
+     <text class="title-text">今日成功交易流水趋势图</text>
+     <canvas canvas-id="firstCanvas"></canvas> 
+  </view>
+  
+  <!-- 今日新老商户 -->
+  <view class="user">
+    <text class="title-text">今日新老商户</text>
+    <view class="trans_all">
+      <view class="user_all">
+        <image style="width: 200rpx; height: 150rpx; background-color: #eeeeee;" src="../../images/user.png"></image>
+      </view>
+      <view class="user_all">
+        <view class="user_title">老活跃商户</view>
+        <view class="user_no">56637</view>
+      </view>
+      <view class="user_all" style="border-right: none;">
+        <view class="user_title">新入网商户</view>
+        <view class="user_no">4624</view>
+      </view>
+    </view>
+    <view class="table">
+      <view class="tr">
+        <view class="td td_title">今日单商户最高消费金额</view>
+        <view class="td last_td">¥2414114.41</view>
+      </view>
+      <view class="tr">
+        <view class="td td_title">历史单商户最高消费金额</view>
+        <view class="td last_td">¥2412332344.41</view>
+      </view>
+      <view class="tr">
+        <view class="td td_title">今日人均消费金额</view>
+        <view class="td last_td">¥24314.41</view>
+      </view>
+      <view class="tr">
+        <view class="td td_title">历史最高人均消费金额</view>
+        <view class="td last_td">¥24114.41</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日合作机构交易流水 -->
+  <view class="organization">
+    <text class="title-text">今日合作机构交易流水</text>
+    <view class="organization_table">
+      <view class="organization_tr first">
+        <view class="organization_th">机构名</view>
+        <view class="organization_th organization_trans">成功交易流水(元)</view>
+        <view class="organization_th">昨日对比</view>
+        <view class="organization_th">图形化</view>
+      </view>
+      <view class="organization_tr" wx:for="{{organization}}" wx:for-key="{{item}}">
+        <view class="organization_td">{{item.organizationName}}</view>
+        <view class="organization_td organization_trans">{{item.trans}}</view>
+        <view class="organization_td">{{item.rate}}</view>
+        <view class="organization_td" bindtap="checkChart">
+          <image style="width: 50rpx; height: 50rpx;" src="../../images/chart.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日支付方式占比 -->
+  <view class="paytype">
+    <text class="title-text">今日支付方式占比</text> 
+    <view class="swiper-tab">  
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">金额占比</view>  
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">交易笔数占比</view>
+    </view>
+    <view class="swiper-box">  
+    <!-- 金额占比 -->  
+        <view class="content">
+          <view class="unionpay">
+            <view class="icon blue"></view>
+            <text>银联快捷</text>
+            <view class="progress_bg">
+              <view class="blue" style="width: {{yinlian}}%;"></view>
+              <text>{{yinlian}}%</text>
+            </view>
+            <view class="progress_num">¥19332782.00</view>
+          </view>
+          <view class="unionpay">
+            <view class="icon green"></view>
+            <text>微信支付</text>
+            <view class="progress_bg">
+              <view class="green" style="width: {{wx}}%;"></view>
+              <text>{{wx}}%</text>
+            </view>
+            <view class="progress_num">¥19332782.00</view>
+          </view>
+          <view class="unionpay">
+            <view class="icon orange"></view>
+            <text>支付宝</text>
+            <view class="progress_bg">
+              <view class="orange" style="width: {{zfb}}%;"></view>
+              <text>{{zfb}}%</text>
+            </view>
+            <view class="progress_num">¥19332782.00</view>
+          </view>
+          <view class="unionpay">
+            <view class="icon red"></view>
+            <text>其他</text>
+            <view class="progress_bg">
+              <view class="red" style="width: {{qt}}%;"></view>
+              <text>{{qt}}%</text>
+            </view>
+            <view class="progress_num">¥19332782.00</view>
+          </view>
+        </view>  
+    </view>  
+  </view>
+
+
+
+
+ </view>

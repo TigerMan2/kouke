@@ -1,0 +1,221 @@
+/* pages/trans/trans.wxss */
+@import "../../common/common.wxss";
+
+/* 今日成功交易流水 */
+.transflow{
+  padding: 40rpx;
+  text-align: center;
+  width: 100%;   
+  background-color: white;
+}
+.transflow_title{
+  color: #939393;
+  font-size: 24rpx;
+}
+.num{
+  color: #FD7E1E;
+  font-size: 50rpx;
+}
+.trans_all{
+  display: flex;
+  margin-top: 40rpx;
+  padding: 20rpx;
+}
+.order_all{
+  width: 33.3%;
+  border-right: 1rpx solid #E6E6E6;
+}
+.order_all text{
+  font-size: 24rpx;
+  color: #939393;
+}
+.order_no{
+  font-size: 28rpx;
+  margin: 10rpx;
+}
+.rate{
+  font-size: 24rpx;
+  color: #297EFC;
+}
+
+/* 今日成功交易流水趋势图 */
+.transchart{
+  width: 100%;  
+  background-color: white;
+  text-align: center;
+  margin-top: 40rpx;
+  padding: 20rpx; 
+}
+.title-text{
+  font-size: 36rpx;
+  color: #212121;
+}
+canvas{
+  margin-top: 40rpx;
+  width: 100%;
+  height: 300px;
+  text-align: left;
+  background-color: white;
+}
+
+/* 今日新老商户 */
+.user{
+  width: 100%;   
+  background-color: white;
+  text-align: center;
+  margin-top: 40rpx;
+  padding: 20rpx;
+}
+.user_all{
+  width: 33%;
+  border-right: 1rpx solid #E6E6E6;
+}
+.user_title{
+  font-size: 24rpx;
+  margin-top: 30rpx;
+  height: 60rpx;
+}
+.user_no{
+  font-size: 28rpx;
+  height: 40rpx;
+}
+.table{
+  border: 4rpx solid #E9E9E9;
+  border-right: 0;
+  border-bottom: 0;
+  margin: 40rpx;
+}
+.tr{
+  align-items: center;
+  height: 100rpx;
+  position: relative; 
+  text-align: center;
+  line-height: 96rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; 
+}
+.td{
+  border-bottom: 4rpx solid #E9E9E9;
+  border-right: 4rpx solid #E9E9E9;
+}
+.td_title{
+  width: 45%;
+  font-size: 22rpx;
+  color: #9F9F9F;
+  background-color: #F7F7F7;
+}
+.last_td{
+  width: 55%;
+  font-size: 30rpx;
+}
+
+/* 今日合作机构交易流水 */
+.organization{
+  width: 100%;   
+  background-color: white;
+  text-align: center;
+  margin-top: 40rpx;
+  padding: 20rpx;
+}
+.organization_table{
+  margin: 40rpx;
+  border-top: 4rpx solid #E9E9E9;
+}
+.organization_tr{
+  align-items: center;
+  position: relative; 
+  text-align: center;
+  /* line-height: 96rpx; */
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 4rpx solid #E9E9E9; 
+}
+.first{
+  background-color: black;
+  color: white;
+}
+.organization_th,.organization_td{
+  font-size: 28rpx;
+  width: 20%;
+}
+.organization_trans{
+  width: 40%;
+}
+
+/* 今日支付方式占比 */
+.paytype{
+  width: 100%;   
+  background-color: white; 
+  text-align: center;
+  margin-top: 40rpx;
+  padding: 20rpx;
+}
+.swiper-tab{  
+   width: 100%;    
+  border-bottom: 2rpx solid #E9E9E9;  
+  text-align: center;  
+  line-height: 80rpx;
+  margin-top: 40rpx;
+}  
+.swiper-tab-list{  
+  font-size: 30rpx;  
+  display: inline-block;  
+  width: 50%;  
+  color: #777777;  
+}  
+.on{ 
+  color: #da7c0c;  
+  border-bottom: 5rpx solid #0070FB;
+}
+.swiper-box{ 
+  display: block; 
+  height: 100%; 
+  width: 100%; 
+  overflow: hidden; 
+}  
+.swiper-box view{  
+    text-align: center;  
+}
+
+/* 金额占比 */
+.unionpay{
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+}
+.icon{
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 10rpx;
+}
+.unionpay text{
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  width: 20%;
+  text-align: left;
+}
+.progress_bg{
+  background-color: #EDF2F6; 
+  width: 40%;
+  height: 16rpx;
+  margin-left: 10rpx;
+}
+.progress_bg view{
+  height: 16rpx;
+  transition: all 0.3s ease-in-out;
+  width: 0;
+}
+.progress_bg text{
+  width: 100%;
+  text-align: right; 
+  font-size: 22rpx;
+  float: right;
+}
+.progress_num{
+  width: 25.7%;
+  font-size: 24rpx;
+  margin-left: 40rpx;
+}

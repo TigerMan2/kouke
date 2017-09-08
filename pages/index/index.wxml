@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view class="loginView">
+  <view class="username">
+    <image src="../../images/icon_mobile.png"></image>
+     <input placeholder="请输入手机号" placeholder-style="color:#6AA1C8"bindinput="getUsername" /> 
+  </view>
+  <view class="username">
+    <image src="../../images/icon_lock.png"></image>
+     <input placeholder="请输入密码" placeholder-style="color:#6AA1C8" bindinput="getPassword" /> 
+  </view>
+  <button class="login" bindtap="bindInLogin">登录</button>
+</view>

@@ -1,0 +1,38 @@
+/**index.wxss**/
+/* 登录账号/手机号 登录密码*/
+.loginView{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+.username{
+  background-color: #E3EDF4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 75%;
+  padding: 20rpx;
+  margin-top: 40rpx;
+  border-radius: 10rpx;
+}
+.username image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.username input{
+  height: 60rpx;
+  font-size: 30rpx;
+  margin-left: 20rpx;
+}
+/* 登录 */
+.login{
+  margin-top: 40rpx;
+  width: 80%;
+  height: 100rpx;
+  background-color:#6AA1C8;
+  color: white; 
+}

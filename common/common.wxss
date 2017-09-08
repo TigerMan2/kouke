@@ -1,0 +1,12 @@
+.blue{
+ background-color: #0070FB; 
+}
+.green{
+  background-color: #26B347;
+}
+.orange{
+  background-color: #ED792D;
+}
+.red{
+  background-color: #EB0F77;
+}
