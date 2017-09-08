@@ -74,6 +74,7 @@ canvas{
   font-size: 24rpx;
   margin-top: 30rpx;
   height: 60rpx;
+  color: #939393;
 }
 .user_no{
   font-size: 28rpx;

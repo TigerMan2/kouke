@@ -103,7 +103,7 @@ Page({
       wx.hideNavigationBarLoading();
       that.animation();
       that.wxChartComplete();
-    },1500);
+    },1000);
   },
 
   /**
@@ -128,10 +128,10 @@ Page({
     this.setData({
       transNo: ''
     });
-    let transNo = 234634212.65;
+    let transNo = 26853245.65;
     let n1 = new NumberAnimate({
       from: transNo,//开始时的数字
-      speed: 1000,// 总时间
+      speed: 10000,// 总时间
       refreshTime: 100,//  刷新一次的时间
       decimals: 2,//小数点后的位数
       onUpdate: () => {//更新回调函数
@@ -206,6 +206,9 @@ Page({
       }
     }
   },
+  /**
+   * 查看图形化
+   */
   checkChart:function(){
     wx.navigateTo({
       url: '../chart/chart',
