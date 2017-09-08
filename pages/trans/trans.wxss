@@ -35,7 +35,6 @@
 }
 .rate{
   font-size: 24rpx;
-  color: #297EFC;
 }
 
 /* 今日成功交易流水趋势图 */
@@ -141,6 +140,9 @@ canvas{
 .organization_th,.organization_td{
   font-size: 28rpx;
   width: 20%;
+}
+.organization_td text{
+  color: red;
 }
 .organization_trans{
   width: 40%;

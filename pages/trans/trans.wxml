@@ -8,17 +8,17 @@
       <view class="order_all">
         <text>发起交易订单(笔)</text>
         <view class="order_no">86325</view>
-        <view class="rate">6.34%</view>
+        <view class="rate up">↑6.34%</view>
       </view>
       <view class="order_all">
         <text>成功交易订单(笔)</text>
         <view class="order_no">56637</view>
-        <view class="rate">1.21%</view>
+        <view class="rate up">↑1.21%</view>
       </view>
       <view class="order_all" style="border-right: none;">
         <text>交易成功率</text>
         <view class="order_no">72.3%</view>
-        <view class="rate" style="color:red;">2.83%</view>
+        <view class="rate down">↓2.83%</view>
       </view>
     </view>
   </view>
@@ -78,7 +78,7 @@
       <view class="organization_tr" wx:for="{{organization}}" wx:for-key="{{item}}">
         <view class="organization_td">{{item.organizationName}}</view>
         <view class="organization_td organization_trans">{{item.trans}}</view>
-        <view class="organization_td">{{item.rate}}</view>
+        <view class="organization_td down">↓{{item.rate}}</view>
         <view class="organization_td" bindtap="checkChart">
           <image style="width: 50rpx; height: 50rpx;" src="../../images/chart.png"></image>
         </view>

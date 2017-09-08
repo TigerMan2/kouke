@@ -131,7 +131,7 @@ Page({
     let transNo = 26853245.65;
     let n1 = new NumberAnimate({
       from: transNo,//开始时的数字
-      speed: 10000,// 总时间
+      speed: 1000,// 总时间
       refreshTime: 100,//  刷新一次的时间
       decimals: 2,//小数点后的位数
       onUpdate: () => {//更新回调函数
