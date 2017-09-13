@@ -1,7 +1,7 @@
 // pages/trans/trans.js
 //获取请求实例
-var network = require('../../utils/network.js');
-import NumberAnimate from "../../common/NumberAnimate";
+var network = require('../../../utils/network.js');
+import NumberAnimate from "../../../common/NumberAnimate";
 Page({
 
   /**
@@ -46,6 +46,30 @@ Page({
         trans: '¥34242142.00',
         rate: '2.83%',
       }],
+    area: [{
+      name: '福建',
+      num: 1200
+    },
+    {
+      name: '河南',
+      num: 1200
+    },
+    {
+      name: '江西',
+      num: 1200
+    },
+    {
+      name: '上海',
+      num: 1200
+    },
+    {
+      name: '北京',
+      num: 1200
+    },
+    {
+      name: '其他',
+      num: 1200
+    }]
 
   },
 
@@ -65,6 +89,8 @@ Page({
     this.animation();
     
     this.wxChartComplete();
+
+    this.wxPieComplete();
 
   },
 
@@ -152,14 +178,14 @@ Page({
     } catch (e) {
       // do something when get system info failed
     }
-    var Charts = require('../../dist/wxcharts.js');
+    var Charts = require('../../../dist/wxcharts.js');
     new Charts({
-      canvasId: 'firstCanvas',
+      canvasId: 'lineCanvas',
       type: 'line',
-      categories: ['18日', '19日', '20日', '21日', '22日', '23日', '今日'],
+      categories: ['0时', '1时', '2时', '3时', '4时', '5时', '06时', '7:00', '8时', '9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时'],
       series: [{
-        name: '成功交易',
-        data: [62, 103,135, 57, 96, 116, 77],
+        name: '成功交易1',
+        data: [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20, 15, 20, 45, 37, 8, 20, 45, 37, 8, 20],
         format: function (val) {
           return val.toFixed(2) + '万';
         }
@@ -218,9 +244,68 @@ Page({
     if (this.data.currentTab1 === e.target.dataset.current) {
       return false;
     } else {
-      that.setData({
-        currentTab1: e.target.dataset.current,
-      });
+      if (e.target.dataset.current == 0){
+        that.setData({
+          currentTab1: e.target.dataset.current,
+          area: [
+            {
+              name: '福建',
+              num: 1200
+            },
+            {
+              name: '河南',
+              num: 1200
+            },
+            {
+              name: '江西',
+              num: 1200
+            },
+            {
+              name: '上海',
+              num: 1200
+            },
+            {
+              name: '北京',
+              num: 1200
+            },
+            {
+              name: '其他',
+              num: 1200
+            }
+          ]
+        });
+      }else{
+        that.setData({
+          currentTab1: e.target.dataset.current,
+          area: [
+            {
+              name: '广州',
+              num: 1500
+            },
+            {
+              name: '重庆',
+              num: 1300
+            },
+            {
+              name: '深圳',
+              num: 1000
+            },
+            {
+              name: '河北',
+              num: 800
+            },
+            {
+              name: '海南',
+              num: 600
+            },
+            {
+              name: '其他',
+              num: 100
+            }
+          ]
+        });
+      }
+      this.wxPieComplete();
     }
   },
   /**
@@ -230,6 +315,64 @@ Page({
     wx.navigateTo({
       url: '../chart/chart',
     })
-  } 
+  }, 
+  /**
+   * 区域图占比
+   */
+  wxPieComplete:function(){
+    var that = this;
+    console.log('数据' + that.data.area[3].num);
+    let windowWidth = 320;
+    try {
+      let res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+    } catch (e) {
+      // do something when get system info failed
+    }
+    var Charts = require('../../../dist/wxcharts.js');
+    new Charts({
+      canvasId: 'pieCanvas',
+      type: 'pie',
+      series: [{
+        name: that.data.area[0].name,
+        data: that.data.area[0].num,
+        format: function (val) {
+          return that.data.area[0].name +val.toFixed(2) + '万';
+        }
+      }, {
+        name: that.data.area[1].name,
+        data: that.data.area[1].num,
+        format: function (val) {
+          return that.data.area[1].name +val.toFixed(2) + '万';
+        }
+        }, {
+          name: that.data.area[2].name,
+          data: that.data.area[2].num,
+          format: function (val) {
+            return that.data.area[2].name +val.toFixed(2) + '万';
+          }
+      }, {
+        name: that.data.area[3].name,
+        data: that.data.area[3].num,
+        format: function (val) {
+          return that.data.area[3].name +val.toFixed(2) + '万';
+        }
+        }, {
+          name: that.data.area[4].name,
+          data: that.data.area[4].num,
+          format: function (val) {
+            return that.data.area[4].name + val.toFixed(2) + '万';
+          }
+      }, {
+        name: that.data.area[5].name,
+        data: that.data.area[5].num,
+        format: function (val) {
+          return that.data.area[5].name + val.toFixed(2) + '万';
+        }
+      }],
+      width: windowWidth,
+      height: 300,
+    })
+  }
 
 })

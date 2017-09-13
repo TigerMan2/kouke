@@ -19,25 +19,25 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
-    var Charts = require('../../dist/wxcharts.js');
+    let windowWidth = 320;
+    try {
+      let res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+    } catch (e) {
+      // do something when get system info failed
+    }
+    var Charts = require('../../../dist/wxcharts.js');
     new Charts({
-      canvasId: 'firstCanvas',
+      canvasId: 'lineCanvas',
       type: 'line',
-      categories: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'],
+      categories: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
       series: [{
         name: '成交量1',
-        data: [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20],
+        data: [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20, 15, 20, 45, 37, 8, 20, 45, 37, 8, 20],
         format: function (val) {
-          return val.toFixed(2) + '万';
+          return val.toFixed(2);
         }
-      }, {
-        name: '成交量2',
-        data: [30, 37, 78, 69, 94, 37, 78, 69, 94, 37, 78, 69, 94, 37],
-        format: function (val) {
-          return val.toFixed(2) + '万';
-        }
-        }],
+      }],
       yAxis: {
         title: '成交金额 (万元)',
         format: function (val) {
@@ -45,8 +45,8 @@ Page({
         },
         min: 0
       },
-      width: 375,
-      height: 400,
+      width: windowWidth,
+      height: 300,
     })
   },
 

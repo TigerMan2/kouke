@@ -26,7 +26,7 @@
   <!-- 今日成功交易流水趋势图 -->
   <view class="transchart">
      <text class="title-text">今日成功交易流水趋势图</text>
-     <canvas canvas-id="firstCanvas"></canvas> 
+     <canvas canvas-id="lineCanvas"></canvas> 
   </view>
   
   <!-- 今日新老商户 -->
@@ -34,7 +34,7 @@
     <text class="title-text">今日新老商户</text>
     <view class="trans_all">
       <view class="user_all">
-        <image style="width: 200rpx; height: 150rpx; background-color: #eeeeee;" src="../../images/user.png"></image>
+        <image style="width: 200rpx; height: 150rpx; background-color: #eeeeee;" src="../../../images/user.png"></image>
       </view>
       <view class="user_all">
         <view class="user_title">老活跃商户</view>
@@ -80,7 +80,7 @@
         <view class="organization_td organization_trans">{{item.trans}}</view>
         <view class="organization_td down">↓{{item.rate}}</view>
         <view class="organization_td" bindtap="checkChart">
-          <image style="width: 50rpx; height: 50rpx;" src="../../images/chart.png"></image>
+          <image style="width: 50rpx; height: 50rpx;" src="../../../images/chart.png"></image>
         </view>
       </view>
     </view>
@@ -145,7 +145,7 @@
     </view>
     <view class="swiper-box">  
       <view class="content">
-          
+          <canvas canvas-id="pieCanvas"></canvas>
       </view>  
     </view>  
   </view>

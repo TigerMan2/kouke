@@ -11,7 +11,8 @@ Page({
     password: '',
   },
   onLoad: function () {
-    var that = this
+    
+
   },
   //获取用户名
   getUsername: function (e) {
@@ -55,8 +56,8 @@ Page({
   },
   bindInLogin: function () {
     // if (this.validateMobile() && this.isHavePsw()) {
-    wx.redirectTo({
-      url: '../trans/trans',
+    wx.switchTab({
+      url: '../realtimedata/trans/trans',
     })
     }
   // }

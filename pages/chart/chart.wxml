@@ -1,4 +1,0 @@
-<!--pages/chart/chart.wxml-->
-<view class="container">
-  <canvas canvas-id="firstCanvas"></canvas>
-</view>

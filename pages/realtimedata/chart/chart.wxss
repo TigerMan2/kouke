@@ -1,0 +1,9 @@
+/* pages/chart/chart.wxss */
+canvas {
+  margin-top: 80rpx;
+  width: 100%;
+  height: 400px;
+}
+.chart{
+  background-color: white;
+}

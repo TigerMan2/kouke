@@ -2,14 +2,49 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/trans/trans",
-    "pages/chart/chart"
+
+    "pages/realtimedata/trans/trans",
+    "pages/realtimedata/chart/chart",
+
+    "pages/analyse/list/list",
+    "pages/analyse/bill/bill",
+
+    "pages/manager/tenant/tenant",
+
+    "pages/user/index/index"
+
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#297EFC",
     "navigationBarTitleText": "抠客",
     "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "selectedColor": "#597FF2",
+    "list": [{
+      "pagePath": "pages/realtimedata/trans/trans",
+      "text": "实时数据",
+      "iconPath": "images/tabbar1.png",
+      "selectedIconPath": "images/tabbar1_select.png"
+    },{
+      "pagePath": "pages/analyse/list/list",
+      "text": "数据分析",
+      "iconPath": "images/tabbar2.png",
+      "selectedIconPath": "images/tabbar2_select.png"
+    },
+    {
+      "pagePath": "pages/manager/tenant/tenant",
+      "text": "商户管理",
+      "iconPath": "images/tabbar3.png",
+      "selectedIconPath": "images/tabbar2_select.png"
+    },
+    {
+      "pagePath": "pages/user/index/index",
+      "text": "我的",
+      "iconPath": "images/tabbar4.png",
+      "selectedIconPath": "images/tabbar2_select.png"
+    }]
   },
   "networkTimeout": {
     "request": 20000,

@@ -1,0 +1,4 @@
+<!--pages/chart/chart.wxml-->
+<view class="container chart">
+  <canvas canvas-id="lineCanvas"></canvas>
+</view>

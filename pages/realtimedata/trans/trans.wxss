@@ -1,5 +1,5 @@
 /* pages/trans/trans.wxss */
-@import "../../common/common.wxss";
+@import "../../../common/common.wxss";
 
 /* 今日成功交易流水 */
 .transflow{

@@ -1,0 +1,22 @@
+/* pages/analyse/bill/bill.wxss */
+page{
+  width: 100%;
+  height: 667rpx;
+  background-color: #EEEEEE;
+}
+.swiper-tab{  
+    width: 100%;   
+    text-align: center;  
+    line-height: 100rpx;
+    background-color: white;
+}  
+.swiper-tab-list{  
+  font-size: 30rpx;  
+  display: inline-block;  
+  width: 20%;  
+  color: #777777;  
+}  
+.on{ 
+  color: #da7c0c;  
+  border-bottom: 5rpx solid #da7c0c;
+}
