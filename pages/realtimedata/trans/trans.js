@@ -124,11 +124,9 @@ Page({
     
     var that = this;
 
-    wx.showNavigationBarLoading();
     wx.stopPullDownRefresh();
 
     setTimeout(function(){
-      wx.hideNavigationBarLoading();
       that.animation();
       that.wxChartComplete();
     },1000);
