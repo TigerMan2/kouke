@@ -1,4 +1,8 @@
 // pages/analyse/bill/bill.js
+
+// 在需要使用的js文件中，导入js  
+var util = require('../../../utils/util.js'); 
+
 Page({
 
   /**
@@ -7,7 +11,13 @@ Page({
   data: {
 
     // tab切换  
-    currentTab: 0, 
+    currentTab: 0,
+    //记录单位
+    unit:'时',
+    //记录单位的数组
+    units:['时','时','日','日','月'],
+    //标头日期
+    titleDate:'', 
     times: ['1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12']
   
   },
@@ -16,6 +26,22 @@ Page({
    */
   onLoad: function (options) {
 
+    var nowDate = util.formatTime(new Date(),0);
+    this.setData({
+      titleDate:nowDate
+    });
+
+    var dat = wx.getStorageSync('time');
+    if(!dat){
+      console.log('本地缓存没有数据')
+      wx.setStorageSync('time', this.data.times)
+    }else
+    {
+      console.log('本地缓存有数据' + dat)
+      this.setData({
+        times:dat
+      });
+    }
 
   },
 
@@ -79,8 +105,13 @@ Page({
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
+
+      var nowDate = util.formatTime(new Date(), e.target.dataset.current);
+      console.log('点击的tab' + e.target.dataset.current);
       that.setData({
-        currentTab: e.target.dataset.current
+        currentTab: e.target.dataset.current,
+        unit: that.data.units[e.target.dataset.current],
+        titleDate: nowDate
       })
     }
   },

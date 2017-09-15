@@ -11,12 +11,12 @@
 
   <!-- 折线图 --> 
   <view class="bill_line">
-    <text class="title-text">2017年09月13日</text>
+    <text class="title-text">{{titleDate}}</text>
     <canvas canvas-id="billLine"></canvas>
     <view class="table">
     <block wx:for-items="{{times}}" wx:for-item="time"                   wx:key="*time">
       <view class="tr">
-        <view class="td td_title">{{index}}时</view>
+        <view class="td td_title">{{index}}{{unit}}</view>
         <view class="td last_td">¥{{time}}</view>
       </view>
       </block>

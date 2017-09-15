@@ -29,7 +29,7 @@ page{
 .bill_line{
   background-color: white;
   text-align: center;
-  margin-top: 110rpx;
+  margin-top: 120rpx;
 }
 .title-text{
   font-size: 36rpx;
