@@ -1,22 +1,75 @@
 /* pages/analyse/bill/bill.wxss */
 page{
   width: 100%;
-  height: 667rpx;
-  background-color: #EEEEEE;
+  height: 100%;
 }
 .swiper-tab{  
     width: 100%;   
     text-align: center;  
     line-height: 100rpx;
     background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    box-shadow: 0 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
 }  
 .swiper-tab-list{  
   font-size: 30rpx;  
   display: inline-block;  
   width: 20%;  
-  color: #777777;  
+  color: #777777;
+  background-color: white;  
 }  
 .on{ 
   color: #da7c0c;  
   border-bottom: 5rpx solid #da7c0c;
+}
+/* 折线图 */
+.bill_line{
+  background-color: white;
+  text-align: center;
+  margin-top: 120rpx;
+}
+.title-text{
+  font-size: 36rpx;
+  color: #212121;
+}
+canvas{
+  margin-top: 40rpx;
+  width: 100%; 
+  height: 300px;
+  text-align: left;
+  background-color: white;
+}
+/* 表格 */
+.table{
+  border: 4rpx solid #E9E9E9;
+  border-right: 0;
+  border-bottom: 0;
+  margin: 20rpx;
+}
+.tr{
+  align-items: center;
+  height: 80rpx;
+  position: relative; 
+  text-align: center;
+  line-height: 76rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; 
+}
+.td{
+  border-bottom: 4rpx solid #E9E9E9;
+  border-right: 4rpx solid #E9E9E9;
+}
+.td_title{
+  width: 45%;
+  font-size: 22rpx;
+  color: #9F9F9F;
+  background-color: #F7F7F7;
+}
+.last_td{
+  width: 55%;
+  font-size: 30rpx;
 }

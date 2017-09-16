@@ -1619,7 +1619,7 @@ var Timing = {
 
 function Animation(opts) {
     this.isStop = false;
-    opts.duration = typeof opts.duration === 'undefined' ? 1000 : opts.duration;
+    opts.duration = typeof opts.duration === 'undefined' ? 500 : opts.duration;
     opts.timing = opts.timing || 'linear';
 
     var delay = 17;
@@ -1701,7 +1701,7 @@ function drawCharts(type, opts, config, context) {
         config._pieTextMaxLength_ = opts.dataLabel === false ? 0 : getPieTextMaxLength(series);
     }
 
-    var duration = opts.animation ? 1000 : 0;
+    var duration = opts.animation ? 500 : 0;
     this.animationInstance && this.animationInstance.stop();
     switch (type) {
         case 'line':
