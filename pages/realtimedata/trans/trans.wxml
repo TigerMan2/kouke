@@ -75,7 +75,7 @@
         <view class="organization_th">昨日对比</view>
         <view class="organization_th">图形化</view>
       </view>
-      <view class="organization_tr" wx:for="{{organization}}" wx:for-key="{{item}}">
+      <view class="organization_tr" wx:for="{{organization}}" wx:key="*item">>
         <view class="organization_td">{{item.organizationName}}</view>
         <view class="organization_td organization_trans">{{item.trans}}</view>
         <view class="organization_td down">↓{{item.rate}}</view>
