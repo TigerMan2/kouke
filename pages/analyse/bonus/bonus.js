@@ -1,39 +1,11 @@
-// pages/analyse/list/list.js
+// pages/analyse/bonus/bonus.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
-    pages:[
-      {
-        url:'../bill/bill',
-        icon:'../../../images/icon1.png',
-        name:'交易流水'
-      },{
-        url: '../bonus/bonus',
-        icon: '../../../images/icon2.png',
-        name: '分润统计'
-      }, {
-        url: '',
-        icon: '../../../images/icon3.png',
-        name: '用户画像'
-      }, {
-        url: '',
-        icon: '../../../images/icon4.png',
-        name: '合作机构'
-      }, {
-        url: '',
-        icon: '../../../images/icon5.png',
-        name: '应用分析'
-      }, {
-        url: '',
-        icon: '../../../images/icon6.png',
-        name: '鉴权统计'
-      }
-    ]
-
+  
   },
 
   /**

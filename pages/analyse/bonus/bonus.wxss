@@ -1,0 +1,40 @@
+/* pages/analyse/bonus/bonus.wxss */
+page{
+  background-color: rgb(236, 236, 236);
+}
+.bonus-hd{
+  height: 150rpx;
+  align-items: center; 
+  display: flex;
+  background-color: white;
+}
+.date-area{
+  font-size: 40rpx;
+  text-align: center;
+  flex: 1;
+}
+.hd-left{
+  flex:0 0 30%;
+  text-align: right;
+}
+.hd-right{
+  flex:0 0 30%;
+  text-align: left;
+}
+.left-arrow {
+  float: right;
+  height: 24rpx;
+  width: 24rpx;
+  border-width: 0 0 2rpx 2rpx;
+  border-color: rgb(253, 113, 0);
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+}
+.right-arrow {
+  height: 24rpx;
+  width: 24rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: rgb(253, 113, 0);
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+}

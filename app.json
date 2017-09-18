@@ -8,6 +8,7 @@
 
     "pages/analyse/list/list",
     "pages/analyse/bill/bill",
+    "pages/analyse/bonus/bonus",
 
     "pages/manager/tenant/tenant",
 

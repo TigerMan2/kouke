@@ -34,10 +34,10 @@ Page({
   },
   bindInLogin: function () {
 
-    if (reg.IsPhoneNum(this.data.username) && reg.IsHavePsw(this.data.password)) {
+    // if (reg.IsPhoneNum(this.data.username) && reg.IsHavePsw(this.data.password)) {
     wx.switchTab({
       url: '../realtimedata/trans/trans',
     })
-    }
+    // }
   }
 })
