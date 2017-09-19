@@ -2,6 +2,12 @@
 
 // 在需要使用的js文件中，导入js  
 var util = require('../../../utils/util.js'); 
+var wxChart = require('../../../utils/wxChartComplete.js');
+
+
+var lineChart = null;
+var startPos = null;
+
 
 Page({
 
@@ -18,7 +24,8 @@ Page({
     units:['时','时','日','日','月'],
     //标头日期
     titleDate:'', 
-    times: ['1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12']
+    times0: ['1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12'],
+    times1: ['1233.23', '32421.43', '2314.12', '1233.23', '32421.43', '2314.12', '1233.23']
   
   },
   /**
@@ -28,21 +35,10 @@ Page({
 
     var nowDate = util.formatTime(new Date(),0);
     this.setData({
-      titleDate:nowDate
+      titleDate:nowDate,
+      times: this.data.times0
     });
-
-    var dat = wx.getStorageSync('time');
-    if(!dat){
-      console.log('本地缓存没有数据')
-      wx.setStorageSync('time', this.data.times)
-    }else
-    {
-      console.log('本地缓存有数据' + dat)
-      this.setData({
-        times:dat
-      });
-    }
-
+    
   },
 
   /**
@@ -57,7 +53,7 @@ Page({
    */
   onShow: function () {
 
-    this.wxChartComplete();
+    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易','billLine');
   
   },
 
@@ -106,6 +102,27 @@ Page({
       return false;
     } else {
 
+      var dat = wx.getStorageSync(e.target.dataset.current);
+      if (!dat) {
+        console.log('本地缓存没有数据')
+        if (e.target.dataset.current == 2){
+          wx.setStorageSync(e.target.dataset.current, this.data.times1)
+          this.setData({
+            times: this.data.times1
+          });
+        }else{
+          wx.setStorageSync(e.target.dataset.current, this.data.times0)
+          this.setData({
+            times: this.data.times0
+          });
+        }
+      } else {
+        console.log('本地缓存有数据' + dat)
+        this.setData({
+          times: dat
+        });
+      }
+
       var nowDate = util.formatTime(new Date(), e.target.dataset.current);
       console.log('点击的tab' + e.target.dataset.current);
       that.setData({
@@ -115,38 +132,26 @@ Page({
       })
     }
   },
-  /**
-   * 折线图显示实现
-   */
-  wxChartComplete: function () {
-    let windowWidth = 320;
-    try {
-      let res = wx.getSystemInfoSync();
-      windowWidth = res.windowWidth;
-    } catch (e) {
-      // do something when get system info failed
+  touchHandler: function (e) {
+    lineChart.scrollStart(e);
+  },
+  moveHandler: function (e) {
+    lineChart.scroll(e);
+  },
+  touchEndHandler: function (e) {
+    lineChart.scrollEnd(e);
+    lineChart.showToolTip(e, {
+      format: function (item, category) {
+        return category + ' ' + item.name + ':' + item.data
+      }
+    });
+  },
+  createSimulationData: function () {
+    var categories = ['0时', '1时', '2时', '3时', '4时', '5时', '6时', '7时', '8时', '9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时'];
+    var data = [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20, 15, 20, 45, 37, 8, 20, 45, 37, 8, 20];
+    return {
+      categories: categories,
+      data: data
     }
-    var Charts = require('../../../dist/wxcharts.js');
-    new Charts({
-      canvasId: 'billLine',
-      type: 'line',
-      categories: ['0时', '1时', '2时', '3时', '4时', '5时', '06时', '7:00', '8时', '9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时'],
-      series: [{
-        name: '成功交易1',
-        data: [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20, 15, 20, 45, 37, 8, 20, 45, 37, 8, 20],
-        format: function (val) {
-          return val.toFixed(2) + '万';
-        }
-      }],
-      yAxis: {
-        title: '交易量(万)',
-        format: function (val) {
-          return val.toFixed(2);
-        },
-        min: 0
-      },
-      width: windowWidth,
-      height: 300,
-    })
   },  
 })

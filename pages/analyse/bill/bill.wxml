@@ -12,7 +12,7 @@
   <!-- 折线图 --> 
   <view class="bill_line">
     <text class="title-text">{{titleDate}}</text>
-    <canvas canvas-id="billLine"></canvas>
+    <canvas canvas-id="billLine" disable-scroll='true' bindtouchstart='touchHandler' bindtouchmove='moveHandler' bindtouchend='touchEndHandler'></canvas>
     <view class="table">
     <block wx:for-items="{{times}}" wx:for-item="time"                   wx:key="*time">
       <view class="tr">

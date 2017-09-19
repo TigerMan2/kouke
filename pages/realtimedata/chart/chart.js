@@ -1,4 +1,9 @@
 // pages/chart/chart.js
+var wxChart = require('../../../utils/wxChartComplete.js');
+
+var lineChart = null;
+var startPos = null;
+
 Page({
 
   /**
@@ -19,35 +24,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    let windowWidth = 320;
-    try {
-      let res = wx.getSystemInfoSync();
-      windowWidth = res.windowWidth;
-    } catch (e) {
-      // do something when get system info failed
-    }
-    var Charts = require('../../../dist/wxcharts.js');
-    new Charts({
-      canvasId: 'lineCanvas',
-      type: 'line',
-      categories: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-      series: [{
-        name: '成交量1',
-        data: [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20, 15, 20, 45, 37, 8, 20, 45, 37, 8, 20],
-        format: function (val) {
-          return val.toFixed(2);
-        }
-      }],
-      yAxis: {
-        title: '成交金额 (万元)',
-        format: function (val) {
-          return val.toFixed(2);
-        },
-        min: 0
-      },
-      width: windowWidth,
-      height: 300,
-    })
+    
+    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易', 'lineCanvas');
+
   },
 
   /**
@@ -90,5 +69,27 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+  touchHandler: function (e) {
+    lineChart.scrollStart(e);
+  },
+  moveHandler: function (e) {
+    lineChart.scroll(e);
+  },
+  touchEndHandler: function (e) {
+    lineChart.scrollEnd(e);
+    lineChart.showToolTip(e, {
+      format: function (item, category) {
+        return category + ' ' + item.name + ':' + item.data
+      }
+    });
+  },
+  createSimulationData: function () {
+    var categories = ['0时', '1时', '2时', '3时', '4时', '5时', '6时', '7时', '8时', '9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时'];
+    var data = [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20, 15, 20, 45, 37, 8, 20, 45, 37, 8, 20];
+    return {
+      categories: categories,
+      data: data
+    }
+  },
 })

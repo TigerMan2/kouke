@@ -2,6 +2,11 @@
 //获取请求实例
 var network = require('../../../utils/network.js');
 import NumberAnimate from "../../../common/NumberAnimate";
+var wxChart = require('../../../utils/wxChartComplete.js');
+
+var lineChart = null;
+var startPos = null;
+
 Page({
 
   /**
@@ -87,10 +92,10 @@ Page({
   onReady: function () {
     
     this.animation();
-    
-    this.wxChartComplete();
 
     this.wxPieComplete();
+
+    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易', 'lineCanvas');
 
   },
 
@@ -99,7 +104,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
 
   },
 
@@ -128,7 +132,7 @@ Page({
 
     setTimeout(function(){
       that.animation();
-      that.wxChartComplete();
+      lineChart = wxChart.wxCharts(that.createSimulationData(), '成功交易', 'lineCanvas');
     },1000);
   },
 
@@ -164,40 +168,6 @@ Page({
         });
       }
     });
-  },
-  /**
-   * 折线图显示实现
-   */
-  wxChartComplete:function(){
-    let windowWidth = 320;
-    try {
-      let res = wx.getSystemInfoSync();
-      windowWidth = res.windowWidth;
-    } catch (e) {
-      // do something when get system info failed
-    }
-    var Charts = require('../../../dist/wxcharts.js');
-    new Charts({
-      canvasId: 'lineCanvas',
-      type: 'line',
-      categories: ['0时', '1时', '2时', '3时', '4时', '5时', '06时', '7:00', '8时', '9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时'],
-      series: [{
-        name: '成功交易1',
-        data: [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20, 15, 20, 45, 37, 8, 20, 45, 37, 8, 20],
-        format: function (val) {
-          return val.toFixed(2) + '万';
-        }
-      }],
-      yAxis: {
-        title: '交易量(万)',
-        format: function (val) {
-          return val.toFixed(2);
-        },
-        min: 0
-      },
-      width: windowWidth,
-      height: 300,
-    })
   },
   /**
    * 支付方式
@@ -371,6 +341,28 @@ Page({
       width: windowWidth,
       height: 300,
     })
-  }
+  },
+  touchHandler: function (e) {
+    lineChart.scrollStart(e);
+  },
+  moveHandler: function (e) {
+    lineChart.scroll(e);
+  },
+  touchEndHandler: function (e) {
+    lineChart.scrollEnd(e);
+    lineChart.showToolTip(e, {
+      format: function (item, category) {
+        return category + ' ' + item.name + ':' + item.data
+      }
+    });
+  },
+  createSimulationData: function () {
+    var categories = ['0时', '1时', '2时', '3时', '4时', '5时', '6时', '7时', '8时', '9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时'];
+    var data = [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20, 15, 20, 45, 37, 8, 20, 45, 37, 8, 20];
+    return {
+      categories: categories,
+      data: data
+    }
+  },
 
 })
