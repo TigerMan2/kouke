@@ -1,12 +1,17 @@
 /* pages/analyse/bonus/bonus.wxss */
+@import "../../../common/common.wxss";
 page{
   background-color: rgb(236, 236, 236);
 }
 .bonus-hd{
   height: 150rpx;
+  width: 100%;
   align-items: center; 
   display: flex;
   background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 .date-area{
   font-size: 40rpx;
@@ -37,4 +42,100 @@ page{
   border-color: rgb(253, 113, 0);
   border-style: solid;
   transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+}
+
+/* 9月份支付渠道分润总额占比 */
+.paytype{
+  width: 100%;   
+  background-color: white; 
+  text-align: center;
+  margin-top: 170rpx;
+  /* padding: 20rpx; */
+}
+.title-text{
+  font-size: 36rpx;
+  color: #212121;
+}
+.unit{
+  font-size: 24rpx;
+  color: #212121;
+  padding: 20rpx;
+}
+.swiper-box{ 
+  display: block; 
+  height: 100%; 
+  width: 100%; 
+  overflow: hidden; 
+}  
+.swiper-box view{  
+    text-align: center;  
+}
+
+/* 金额占比 */
+.unionpay{
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+}
+.icon{
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 10rpx;
+}
+.unionpay text{
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  width: 20%;
+  text-align: left;
+}
+.progress_bg{
+  background-color: white; 
+  width: 40%;
+  height: 32rpx;
+  margin-left: 10rpx;
+}
+.progress_bg view{
+  height: 32rpx;
+  transition: all 0.3s ease-in-out;
+  width: 0;
+}
+.progress_bg text{
+  width: 100%;
+  text-align: right; 
+  font-size: 22rpx;
+  float: right;
+}
+.progress_num{
+  width: 25.7%;
+  font-size: 24rpx;
+  margin-left: 40rpx;
+}
+/* 9月份支付渠道分润占比 */
+.bouns-bd{
+  width: 100%;   
+  background-color: white; 
+  text-align: center;
+  margin-top: 20rpx;
+  /* padding: 20rpx; */
+}
+.table {
+  border:1px solid white;
+  border-right: 0;
+  border-bottom: 0;
+}
+.tr {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.th,.td {
+  padding: 10px;
+  border-bottom: 1px solid rgb(233, 233, 233);
+  border-right: 1px solid rgb(233, 233, 233);
+  text-align: center;
+  width:100%
+}
+.th {
+  font-weight: 400;
+  background-color: rgb(41, 126, 252);
 }

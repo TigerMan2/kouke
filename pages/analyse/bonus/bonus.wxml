@@ -1,8 +1,78 @@
 <!--pages/analyse/bonus/bonus.wxml-->
 <view>
   <view class='bonus-hd'>
-    <view class='hd-left'><view class='left-arrow'></view></view>
-    <view class='date-area'>2017年09月</view>
-    <view class='hd-right'><view class='right-arrow'></view></view>
+    <view class='hd-left'><view class='left-arrow' bindtap='back'></view></view>
+    <view class='date-area'>{{date}}</view>
+    <view class='hd-right'><view class='right-arrow' bindtap='next'></view></view>
+  </view>
+  <!-- 9月份支付渠道分润总额占比 -->
+  <view class="paytype">
+    <text class="title-text">9月份支付渠道分润总额占比</text> 
+    <view class="unit align-left">单位：万</view>
+    <view class="swiper-box">  
+    <!-- 金额占比 -->  
+        <view class="content">
+          <view class="unionpay">
+            <view class="icon blue"></view>
+            <text>银联快捷</text>
+            <view class="progress_bg">
+              <view class="blue" style="width: {{yinlian}}%;"></view>
+            </view>
+            <view class="progress_num">¥19332782.00</view>
+          </view>
+          <view class="unionpay">
+            <view class="icon green"></view>
+            <text>微信支付</text>
+            <view class="progress_bg">
+              <view class="green" style="width: {{wx}}%;"></view>
+            </view>
+            <view class="progress_num">¥19332782.00</view>
+          </view>
+          <view class="unionpay">
+            <view class="icon orange"></view>
+            <text>支付宝</text>
+            <view class="progress_bg">
+              <view class="orange" style="width: {{zfb}}%;"></view>
+            </view>
+            <view class="progress_num">¥19332782.00</view>
+          </view>
+          <view class="unionpay">
+            <view class="icon red"></view>
+            <text>其他</text>
+            <view class="progress_bg">
+              <view class="red" style="width: {{qt}}%;"></view>
+            </view>
+            <view class="progress_num">¥19332782.00</view>
+          </view>
+          <view class="unionpay">
+            <view class="icon red"></view>
+            <text>合计</text>
+            <view class="progress_bg">
+            </view>
+            <view class="progress_num">¥19332782.00</view>
+          </view>
+        </view>  
+    </view>  
+  </view>
+  <!-- 9月份支付渠道每日分润 -->
+  <view class='bouns-bd'>
+    <text class="title-text">9月份支付渠道每日分润</text> 
+    <view class="unit align-center">单位：万</view>
+     <view class="table">
+        <view class="tr">
+            <view class="th">日期</view>
+            <view class="th">银联快捷</view>
+            <view class="th">微信支付</view>
+            <view class="th">支付宝</view>
+            <view class="th">其他</view>
+        </view>
+         <view class="tr" wx:for="{{bouns}}" wx:key="{{*bouns}}">
+            <view class="td">{{item.date}}</view>
+            <view class="td">{{item.yinlian}}</view>
+            <view class="td">{{item.wx}}</view>
+            <view class="td">{{item.zfb}}</view>
+            <view class="td">{{item.qt}}</view>
+        </view> 
+    </view>
   </view>
 </view>
