@@ -3,7 +3,7 @@
   <!-- 今日成功交易流水 -->
   <view class="transflow">
     <view class="transflow_title">今日成功交易流水(元)</view>
-    <view class="num">{{transNo}}</view>
+    <view class="num">{{todayTrans}}</view>
     <view class="trans_all">
       <view class="order_all">
         <text>发起交易订单(笔)</text>

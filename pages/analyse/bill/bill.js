@@ -33,6 +33,8 @@ Page({
    */
   onLoad: function (options) {
 
+    console.log('获取到页面传过来的值为：' + options.page_id)
+
     var nowDate = util.formatTime(new Date(),0);
     this.setData({
       titleDate:nowDate,
@@ -53,7 +55,7 @@ Page({
    */
   onShow: function () {
 
-    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易','billLine','line');
+    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易','billLine','line',true);
   
   },
 

@@ -63,20 +63,6 @@ function chaifen(dateStr) {
   return newDate;
 }
 
-// 获取当前时间数组
-function getNowTime(){
-  var date = new Date()
-  var hour = date.getHours()
-  var times = []
-  for(var i = 0; i <= hour; i++)
-  {
-    times[i] = formatNumber(i)
-  }
-  return times
-  console.log('......' + times)
-
-}
-
 function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -86,5 +72,4 @@ module.exports = {
   formatTime: formatTime,
   changeMonth:changeMonth,
   chaifen: chaifen,
-  getNowTime: getNowTime,
 }

@@ -4,11 +4,10 @@ var network = require('../../../utils/network.js');
 import NumberAnimate from "../../../common/NumberAnimate";
 var wxChart = require('../../../utils/wxChartComplete.js');
 var util = require('../../../utils/util.js');
+var index_trans = require('../../../data/index_trans.js');
 
 var lineChart = null;
 var startPos = null;
-var vList = [];
-var times = [];
 
 Page({
 
@@ -98,36 +97,23 @@ Page({
     this.wxPieComplete();
 
     var that = this;
-    network.GET(
-      'http://192.168.1.37:8088/index',
-      '',
-      function (res) {
-        console.log('获取成功的数据' + res.data.todayTransGroupbyHourShutcutpay);
-        var value = res.data.todayTransGroupbyHour_Shutcutpay
-        times = util.getNowTime()
-        console.log(';;;;;;;;' + times)
-        for (var v0 in times) {
-          var tmp = times[v0]
+    // network.GET(
+    //   'http://192.168.1.37:8088/index',
+    //   '',
+    //   function (res) {
+    //     //今日交易趋势折线图
+    //     lineChart = wxChart.wxCharts(that.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.data.todayTransGroupbyHour_Shutcutpay)), '成功交易', 'lineCanvas', 'line',false)
+    //     //设置基础值
+    //     that.setData({
+    //       todayTrans: res.data.todayTrans
+    //     })
 
-          for (var v in value) {
-            var m = value[v]
-            if (tmp == m["k"]) {
-              vList[v0] = m["v"];
-              break;
-            }
-
-            vList[v0] = 0
-
-          }
-        }
-        console.log('---- ' + vList);
-
-        lineChart = wxChart.wxCharts(that.createSimulationData(), '成功交易', 'lineCanvas', 'line');
-      },
-      function (errorRes) {
-        console.log('获取失败的数据' + errorRes);
-      }
-    )
+    //   },
+    //   function (errorRes) {
+    //     console.log('获取失败的数据' + errorRes);
+    //   }
+    // )
+    console.log('------' + index_trans.index)
 
   },
 
@@ -164,7 +150,7 @@ Page({
 
     setTimeout(function(){
       that.animation();
-      lineChart = wxChart.wxCharts(that.createSimulationData(), '成功交易', 'lineCanvas','line');
+      lineChart = wxChart.wxCharts(that.createSimulationData(), '成功交易', 'lineCanvas','line',false);
     },1000);
   },
 
@@ -388,7 +374,7 @@ Page({
       }
     });
   },
-  createSimulationData: function () {
+  createSimulationData: function (times,vList) {
     var categories = times;
     var data = vList;
     return {

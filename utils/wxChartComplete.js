@@ -1,7 +1,7 @@
 var Charts = require('../dist/wxcharts.js');
 
 // 折线图
-function wxCharts(simulationData, name, canvasId, chartStyle){
+function wxCharts(simulationData, name, canvasId, chartStyle, isScroll){
   let windowWidth = 320;
   try {
     let res = wx.getSystemInfoSync();
@@ -16,6 +16,9 @@ function wxCharts(simulationData, name, canvasId, chartStyle){
     series: [{
       name: name,
       data: simulationData.data,
+      format: function (val, name) {
+        return val.toFixed(2);
+      }
     }],
     yAxis: {
       title: '交易量(万)',
@@ -26,9 +29,9 @@ function wxCharts(simulationData, name, canvasId, chartStyle){
     },
     width: windowWidth,
     height: 300,
-    dataLabel: false,
+    dataLabel: isScroll,
     dataPointShape: true,
-    // enableScroll: true,
+    enableScroll: isScroll,
   });
   return lineChart;
 }

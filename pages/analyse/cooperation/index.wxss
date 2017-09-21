@@ -1,0 +1,41 @@
+/* pages/analyse/cooperation/index.wxss */
+@import "../../../common/common.wxss";
+
+/* 今日合作机构交易流水 */
+page{
+  background-color: rgb(236, 236, 236);
+}
+.organization{
+  background-color: white;
+  text-align: center;
+  margin-top: 170rpx;
+}
+.organization_table{
+  margin: 40rpx;
+  border-top: 4rpx solid #E9E9E9;
+}
+.organization_tr{
+  align-items: center;
+  position: relative; 
+  text-align: center;
+  /* line-height: 96rpx; */
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 4rpx solid #E9E9E9; 
+}
+.first{
+  background-color: black;
+  color: white;
+}
+.organization_th,.organization_td{
+  font-size: 28rpx;
+  width: 20%;
+}
+.organization_td text{
+  color: red;
+}
+.organization_trans{
+  width: 40%;
+}

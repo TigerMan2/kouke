@@ -25,7 +25,7 @@ Page({
    */
   onReady: function () {
     
-    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易', 'lineCanvas','line');
+    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易', 'lineCanvas','line',true);
 
   },
 

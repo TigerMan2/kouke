@@ -1,0 +1,27 @@
+<!--pages/analyse/cooperation/index.wxml-->
+<import src="../../../common/date/date.wxml"/>
+
+<view>
+  <template is="date" data="{{date}}" />
+
+  <!-- 月度合作机构交易流水 -->
+  <view class="organization">
+    <text class="title-text">月度合作机构交易流水</text>
+    <view class="organization_table">
+      <view class="organization_tr first">
+        <view class="organization_th">机构名</view>
+        <view class="organization_th organization_trans">成功交易流水(元)</view>
+        <view class="organization_th">昨日对比</view>
+        <view class="organization_th">图形化</view>
+      </view>
+      <view class="organization_tr" wx:for="{{organization}}" wx:key="{{*organization}}">
+        <view class="organization_td">{{item.organizationName}}</view>
+        <view class="organization_td organization_trans">{{item.trans}}</view>
+        <view class="organization_td up">{{item.rate}}</view>
+        <view class="organization_td" bindtap="checkChart">
+          <image style="width: 50rpx; height: 50rpx;" src="../../../images/chart.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

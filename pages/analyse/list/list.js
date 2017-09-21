@@ -20,7 +20,7 @@ Page({
         icon: '../../../images/icon3.png',
         name: '用户画像'
       }, {
-        url: '',
+        url: '../cooperation/index',
         icon: '../../../images/icon4.png',
         name: '合作机构'
       }, {
