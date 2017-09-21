@@ -5,6 +5,7 @@ import NumberAnimate from "../../../common/NumberAnimate";
 var wxChart = require('../../../utils/wxChartComplete.js');
 var util = require('../../../utils/util.js');
 var index_trans = require('../../../data/index_trans.js');
+var dataJson = require('../../../data_json/index.js');
 
 var lineChart = null;
 var startPos = null;
@@ -97,6 +98,8 @@ Page({
     this.wxPieComplete();
 
     var that = this;
+
+    console.log('获取本地的json数据：' + dataJson.index)
     // network.GET(
     //   'http://192.168.1.37:8088/index',
     //   '',
@@ -113,7 +116,6 @@ Page({
     //     console.log('获取失败的数据' + errorRes);
     //   }
     // )
-    console.log('------' + index_trans.index)
 
   },
 
