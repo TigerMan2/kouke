@@ -51,16 +51,20 @@
         <view class="td last_td">¥2414114.41</view>
       </view>
       <view class="tr">
-        <view class="td td_title">历史单商户最高消费金额</view>
+        <view class="td td_title">人均日消费金额</view>
         <view class="td last_td">¥2412332344.41</view>
       </view>
       <view class="tr">
-        <view class="td td_title">今日人均消费金额</view>
-        <view class="td last_td">¥24314.41</view>
+        <view class="td td_title">人均日消费次数</view>
+        <view class="td last_td">8</view>
       </view>
       <view class="tr">
-        <view class="td td_title">历史最高人均消费金额</view>
-        <view class="td last_td">¥24114.41</view>
+        <view class="td td_title">活跃用户百分比</view>
+        <view class="td last_td">90%</view>
+      </view>
+      <view class="tr">
+        <view class="td td_title">新增商户百分比</view>
+        <view class="td last_td">80%</view>
       </view>
     </view>
   </view>

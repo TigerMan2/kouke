@@ -1,10 +1,13 @@
 <!--pages/analyse/bonus/bonus.wxml-->
+<import src="../../../common/date/date.wxml"/>
+
 <view>
-  <view class='bonus-hd'>
-    <view class='hd-left'><view class='left-arrow' bindtap='back'></view></view>
+  <!-- <view class='bonus-hd'>
+    <view class='hd-left' bindtap='back'><view class='left-arrow'></view></view>
     <view class='date-area'>{{date}}</view>
-    <view class='hd-right'><view class='right-arrow' bindtap='next'></view></view>
-  </view>
+    <view class='hd-right' bindtap='next'><view class='right-arrow'></view></view>
+  </view> -->
+  <template is="date" data="{{date}}" />
   <!-- 9月份支付渠道分润总额占比 -->
   <view class="paytype">
     <text class="title-text">9月份支付渠道分润总额占比</text> 
@@ -67,7 +70,7 @@
             <view class="th">其他</view>
         </view>
          <view class="tr" wx:for="{{bouns}}" wx:key="{{*bouns}}">
-            <view class="td">{{item.date}}</view>
+            <view class="td gray">{{item.date}}</view>
             <view class="td">{{item.yinlian}}</view>
             <view class="td">{{item.wx}}</view>
             <view class="td">{{item.zfb}}</view>

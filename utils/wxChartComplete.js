@@ -1,6 +1,7 @@
 var Charts = require('../dist/wxcharts.js');
 
-function wxCharts(simulationData, name, canvasId){
+// 折线图
+function wxCharts(simulationData, name, canvasId, chartStyle){
   let windowWidth = 320;
   try {
     let res = wx.getSystemInfoSync();
@@ -10,19 +11,52 @@ function wxCharts(simulationData, name, canvasId){
   }
   var lineChart = new Charts({
     canvasId: canvasId,
-    type: 'line',
+    type: chartStyle,
     categories: simulationData.categories,
     series: [{
-      name: '成功交易',
+      name: name,
       data: simulationData.data,
-      format: function (val) {
-        return val.toFixed(2) + '万';
-      }
     }],
     yAxis: {
       title: '交易量(万)',
       format: function (val) {
         return val.toFixed(2);
+      },
+      min: 0
+    },
+    width: windowWidth,
+    height: 300,
+    dataLabel: false,
+    dataPointShape: true,
+    // enableScroll: true,
+  });
+  return lineChart;
+}
+
+// 柱状图
+function columnCharts(simulationData, name, canvasId, chartStyle) {
+  let windowWidth = 320;
+  try {
+    let res = wx.getSystemInfoSync();
+    windowWidth = res.windowWidth;
+  } catch (e) {
+    // do something when get system info failed
+  }
+  var lineChart = new Charts({
+    canvasId: canvasId,
+    type: chartStyle,
+    categories: simulationData.categories,
+    series: [{
+      name: name,
+      data: simulationData.data,
+      format: function (val) {
+        return val + '%';
+      }
+    }],
+    yAxis: {
+      title: '单位：%',
+      format: function (val) {
+        return val;
       },
       min: 0
     },
@@ -38,6 +72,26 @@ function wxCharts(simulationData, name, canvasId){
   return lineChart;
 }
 
+// 环形
+function wxconsume(simulationData, canvasId) {
+  let windowWidth = 320;
+  try {
+    let res = wx.getSystemInfoSync();
+    windowWidth = res.windowWidth;
+  } catch (e) {
+    // do something when get system info failed
+  }
+  new Charts({
+    canvasId: canvasId,
+    type: 'ring',
+    series: simulationData,
+    width: windowWidth,
+    height: 300,
+  });
+}
+
 module.exports = {
-  wxCharts: wxCharts
+  wxCharts: wxCharts,
+  wxconsume: wxconsume,
+  columnCharts: columnCharts,
 }

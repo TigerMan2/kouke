@@ -1,0 +1,93 @@
+<!--pages/analyse/personas/personas.wxml-->
+<import src="../../../common/date/date.wxml"/>
+
+<view>
+  <!-- 切换日期 -->
+  <template is="date" data="{{date}}" />
+  <!-- 活跃商户 -->
+  <view class='counter'>
+    <image style="width: 200rpx; height: 150rpx; background-color: #eeeeee;" src='../../../images/user.png'></image>
+    <view class="trans_all">
+      <view class="user_all">
+        <view class="user_title">累计商户</view>
+        <view class="user_no">56637</view>
+      </view>
+      <view class="user_all">
+        <view class="user_title">活跃商户</view>
+        <view class="user_no">56637</view>
+      </view>
+      <view class="user_all" style="border-right: none;">
+        <view class="user_title">新入网商户</view>
+        <view class="user_no">4624</view>
+      </view>
+    </view>
+    <!-- 表格 -->
+    <view class="table">
+      <view class="tr">
+        <view class="td td_title">今日单商户最高消费金额</view>
+        <view class="td last_td">¥2414114.41</view>
+      </view>
+      <view class="tr">
+        <view class="td td_title">人均日消费金额</view>
+        <view class="td last_td">¥2412332344.41</view>
+      </view>
+      <view class="tr">
+        <view class="td td_title">人均日消费次数</view>
+        <view class="td last_td">8</view>
+      </view>
+      <view class="tr">
+        <view class="td td_title">活跃用户百分比</view>
+        <view class="td last_td">90%</view>
+      </view>
+      <view class="tr">
+        <view class="td td_title">新增商户百分比</view>
+        <view class="td last_td">80%</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 用户消费能力 -->
+  <view class="consume">
+     <text class="title-text">用户消费能力分布</text>
+     <canvas canvas-id="ability"></canvas> 
+  </view>
+  <!-- 用户日消费时段分布 -->
+  <view class="consume">
+     <text class="title-text">用户日消费时段分布</text>
+     <canvas canvas-id="time" disable-scroll='true' bindtouchstart='touchHandler' bindtouchmove='moveHandler' bindtouchend='touchEndHandler'></canvas> 
+  </view>
+
+  <!-- 9月份用户性别分布 -->
+  <view class="consume">
+     <text class="title-text">9月份用户性别分布</text>
+     <canvas canvas-id="sex"></canvas> 
+  </view>
+
+  <!-- 9月份用户年龄分布 -->
+  <view class="consume">
+     <text class="title-text">9月份用户年龄分布</text>
+     <canvas canvas-id="age"></canvas> 
+  </view>
+  <!-- 用户月交易分布 -->
+  <view class="consume">
+     <text class="title-text">用户月交易分布</text>
+     <canvas canvas-id="trans" disable-scroll='true' bindtouchstart='transtouchStart' bindtouchmove='transmove' bindtouchend='transtouchEnd'></canvas> 
+  </view>
+  <!-- 用户地域分布 -->
+  <view class='bouns-bd'>
+    <text class="title-text">用户地域分布</text> 
+     <view class="area-table">
+        <view class="area-tr">
+            <view class="area-th">城市</view>
+            <view class="area-th">用户数量</view>
+            <view class="area-th">用户占比</view>
+        </view>
+         <view class="area-tr" wx:for="{{bouns}}" wx:key="{{*area}}">
+            <view class="area-td gray">{{item.area}}</view>
+            <view class="area-td">{{item.num}}</view>
+            <view class="area-td">{{item.scale}}</view>
+        </view> 
+    </view>
+  </view>
+
+</view>

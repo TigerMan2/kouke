@@ -3,9 +3,12 @@
 var network = require('../../../utils/network.js');
 import NumberAnimate from "../../../common/NumberAnimate";
 var wxChart = require('../../../utils/wxChartComplete.js');
+var util = require('../../../utils/util.js');
 
 var lineChart = null;
 var startPos = null;
+var vList = [];
+var times = [];
 
 Page({
 
@@ -82,7 +85,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
 
   },
 
@@ -95,7 +97,37 @@ Page({
 
     this.wxPieComplete();
 
-    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易', 'lineCanvas');
+    var that = this;
+    network.GET(
+      'http://192.168.1.37:8088/index',
+      '',
+      function (res) {
+        console.log('获取成功的数据' + res.data.todayTransGroupbyHourShutcutpay);
+        var value = res.data.todayTransGroupbyHour_Shutcutpay
+        times = util.getNowTime()
+        console.log(';;;;;;;;' + times)
+        for (var v0 in times) {
+          var tmp = times[v0]
+
+          for (var v in value) {
+            var m = value[v]
+            if (tmp == m["k"]) {
+              vList[v0] = m["v"];
+              break;
+            }
+
+            vList[v0] = 0
+
+          }
+        }
+        console.log('---- ' + vList);
+
+        lineChart = wxChart.wxCharts(that.createSimulationData(), '成功交易', 'lineCanvas', 'line');
+      },
+      function (errorRes) {
+        console.log('获取失败的数据' + errorRes);
+      }
+    )
 
   },
 
@@ -132,7 +164,7 @@ Page({
 
     setTimeout(function(){
       that.animation();
-      lineChart = wxChart.wxCharts(that.createSimulationData(), '成功交易', 'lineCanvas');
+      lineChart = wxChart.wxCharts(that.createSimulationData(), '成功交易', 'lineCanvas','line');
     },1000);
   },
 
@@ -357,8 +389,8 @@ Page({
     });
   },
   createSimulationData: function () {
-    var categories = ['0时', '1时', '2时', '3时', '4时', '5时', '6时', '7时', '8时', '9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时'];
-    var data = [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20, 15, 20, 45, 37, 8, 20, 45, 37, 8, 20];
+    var categories = times;
+    var data = vList;
     return {
       categories: categories,
       data: data

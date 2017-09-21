@@ -125,36 +125,30 @@ Page({
   onShareAppMessage: function () {
   
   },
+  /**
+   * 上个月
+   */
   back:function(){
-    var newDate = this.chaifen();
-    console.log(newDate);
-    var dateTime = util.changeMonth(newDate,0);
+    var dateTime = util.changeMonth(util.chaifen(this.data.date),0);
     this.setData({
-      date: dateTime
+      date: dateTime,
+      yinlian: '12.21',//银联
+      wx: '90.33',//微信
+      zfb: '48.75',//支付宝
+      qt: '99.71',//其他
     })
   },
+  /**
+   * 下个月
+   */
   next:function(){
-    var newDate = this.chaifen();
-    console.log(newDate);
-    var dateTime = util.changeMonth(newDate, 1);
+    var dateTime = util.changeMonth(util.chaifen(this.data.date), 1);
     this.setData({
-      date: dateTime
+      date: dateTime,
+      yinlian: '61.21',//银联
+      wx: '88.33',//微信
+      zfb: '68.75',//支付宝
+      qt: '41.71',//其他
     })
   },
-  chaifen:function(){
-    var that = this;
-    var strs = new Array();
-    strs = that.data.date.split('年');
-    var month = strs[1];
-    var months = new Array();
-    months = month.split('月');
-    var newYear = strs[0];
-    var newMonth = months[0];
-    // var timestamp2 = Date.parse(new Date(newYear + '-' + newMonth));
-    console.log(newYear, newMonth);
-    var newDate = new Date(newYear,newMonth);
-    // newDate.setTime(timestamp2);
-    console.log(newDate);
-    return newDate;
-  }
 })

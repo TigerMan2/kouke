@@ -53,7 +53,7 @@ Page({
    */
   onShow: function () {
 
-    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易','billLine');
+    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易','billLine','line');
   
   },
 

@@ -16,7 +16,7 @@ Page({
         icon: '../../../images/icon2.png',
         name: '分润统计'
       }, {
-        url: '',
+        url: '../personas/personas',
         icon: '../../../images/icon3.png',
         name: '用户画像'
       }, {

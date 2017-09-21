@@ -3,47 +3,6 @@
 page{
   background-color: rgb(236, 236, 236);
 }
-.bonus-hd{
-  height: 150rpx;
-  width: 100%;
-  align-items: center; 
-  display: flex;
-  background-color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-.date-area{
-  font-size: 40rpx;
-  text-align: center;
-  flex: 1;
-}
-.hd-left{
-  flex:0 0 30%;
-  text-align: right;
-}
-.hd-right{
-  flex:0 0 30%;
-  text-align: left;
-}
-.left-arrow {
-  float: right;
-  height: 24rpx;
-  width: 24rpx;
-  border-width: 0 0 2rpx 2rpx;
-  border-color: rgb(253, 113, 0);
-  border-style: solid;
-  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-}
-.right-arrow {
-  height: 24rpx;
-  width: 24rpx;
-  border-width: 2rpx 2rpx 0 0;
-  border-color: rgb(253, 113, 0);
-  border-style: solid;
-  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-}
-
 /* 9月份支付渠道分润总额占比 */
 .paytype{
   width: 100%;   
@@ -133,9 +92,11 @@ page{
   border-bottom: 1px solid rgb(233, 233, 233);
   border-right: 1px solid rgb(233, 233, 233);
   text-align: center;
-  width:100%
+  width:100%;
+  font-size: 24rpx;
 }
 .th {
   font-weight: 400;
+  color: white;
   background-color: rgb(41, 126, 252);
 }

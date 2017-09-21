@@ -9,6 +9,7 @@
     "pages/analyse/list/list",
     "pages/analyse/bill/bill",
     "pages/analyse/bonus/bonus",
+    "pages/analyse/personas/personas",
 
     "pages/manager/tenant/tenant",
 

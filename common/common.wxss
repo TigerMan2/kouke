@@ -22,3 +22,6 @@
 .align-left{
   text-align: left;
 }
+.gray{
+  background-color: #F7F7F7;
+}

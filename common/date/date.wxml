@@ -1,0 +1,7 @@
+<template name="date">
+  <view style='height: 150rpx;width: 100%;align-items: center; display: flex;background-color: white;position: fixed;top: 0;left: 0;z-index: 99;'>
+    <view style='flex:0 0 30%;text-align: right;' bindtap='back'><view style='float: right;height: 24rpx;width: 24rpx;border-width: 0 0 2rpx 2rpx;border-color: rgb(253, 113, 0);border-style: solid;transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);'></view></view>
+    <view style='font-size: 40rpx;text-align: center;flex: 1;'>{{date}}</view>
+    <view style='flex:0 0 30%;text-align: left;' bindtap='next'><view style='height: 24rpx;width: 24rpx;border-width: 2rpx 2rpx 0 0;border-color: rgb(253, 113, 0);border-style: solid;transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);'></view></view>
+  </view>
+</template>
