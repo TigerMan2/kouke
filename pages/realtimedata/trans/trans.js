@@ -1,11 +1,9 @@
 // pages/trans/trans.js
 //获取请求实例
-var network = require('../../../utils/network.js');
 import NumberAnimate from "../../../common/NumberAnimate";
 var wxChart = require('../../../utils/wxChartComplete.js');
 var util = require('../../../utils/util.js');
 var index_trans = require('../../../data/index_trans.js');
-var dataJson = require('../../../data_json/index.js');
 
 var lineChart = null;
 var startPos = null;
@@ -93,29 +91,11 @@ Page({
    */
   onReady: function () {
     
-    this.animation();
+    
 
-    this.wxPieComplete();
+    this.wxPieComplete()
 
-    var that = this;
-
-    console.log('获取本地的json数据：' + dataJson.index)
-    // network.GET(
-    //   'http://192.168.1.37:8088/index',
-    //   '',
-    //   function (res) {
-    //     //今日交易趋势折线图
-    //     lineChart = wxChart.wxCharts(that.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.data.todayTransGroupbyHour_Shutcutpay)), '成功交易', 'lineCanvas', 'line',false)
-    //     //设置基础值
-    //     that.setData({
-    //       todayTrans: res.data.todayTrans
-    //     })
-
-    //   },
-    //   function (errorRes) {
-    //     console.log('获取失败的数据' + errorRes);
-    //   }
-    // )
+    this.getData()
 
   },
 
@@ -151,8 +131,7 @@ Page({
     wx.stopPullDownRefresh();
 
     setTimeout(function(){
-      that.animation();
-      lineChart = wxChart.wxCharts(that.createSimulationData(), '成功交易', 'lineCanvas','line',false);
+      that.getData()
     },1000);
   },
 
@@ -172,20 +151,21 @@ Page({
   /**
    * 数字动画实现
    */
-  animation:function(){
+  animation:function(num){
     this.setData({
-      transNo: ''
+      transNo: 0
     });
-    let transNo = 26853245.65;
+    let transN = num;
     let n1 = new NumberAnimate({
-      from: transNo,//开始时的数字
-      speed: 1000,// 总时间
+      from:transN,//开始时的数字
+      speed: 1500,// 总时间
       refreshTime: 100,//  刷新一次的时间
       decimals: 2,//小数点后的位数
       onUpdate: () => {//更新回调函数
         this.setData({
           transNo: '¥' + n1.tempValue
         });
+        console.log('获取数字---' + n1.tempValue)
       }
     });
   },
@@ -362,20 +342,6 @@ Page({
       height: 300,
     })
   },
-  touchHandler: function (e) {
-    lineChart.scrollStart(e);
-  },
-  moveHandler: function (e) {
-    lineChart.scroll(e);
-  },
-  touchEndHandler: function (e) {
-    lineChart.scrollEnd(e);
-    lineChart.showToolTip(e, {
-      format: function (item, category) {
-        return category + ' ' + item.name + ':' + item.data
-      }
-    });
-  },
   createSimulationData: function (times,vList) {
     var categories = times;
     var data = vList;
@@ -384,5 +350,18 @@ Page({
       data: data
     }
   },
+  getData:function(){
+    var res = index_trans.getIndexData()
+    this.animation(parseInt(res.trans_money_today))
+    lineChart = wxChart.wxCharts(this.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.trans_money_shutcutpay_today_trend)), '成功交易', 'lineCanvas', 'line', false)
+    this.setData({
+      trans_amount_today: res.trans_amount_today,
+      trans_amount_succ_today: res.trans_amount_succ_today,
+      trans_amount_succ_today_rate: res.trans_amount_succ_today_rate,
+      trans_amount_growth_rate: index_trans.IsUp(res.trans_amount_growth_rate),
+      trans_amount_succ_growth_rate: index_trans.IsUp(res.trans_amount_succ_growth_rate),
+      trans_amount_succ_ratediff: index_trans.IsUp(res.trans_amount_succ_ratediff),
+    })
+  }
 
 })

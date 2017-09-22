@@ -1,3 +1,7 @@
+var network = require('../utils/network.js');
+var dataJson = require('../data_json/index.js');
+
+
 // 获取截止当前时间数组
 function getTimes(){
   var date = new Date()
@@ -37,8 +41,43 @@ function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+//获取首页数据
+function getIndexData(){
+  // network.GET(
+    //   'http://192.168.1.37:8088/index',
+    //   '',
+    //   function (res) {
+    //     //今日交易趋势折线图
+    //     lineChart = wxChart.wxCharts(that.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.data.todayTransGroupbyHour_Shutcutpay)), '成功交易', 'lineCanvas', 'line',false)
+    //     //设置基础值
+    //     that.setData({
+    //       todayTrans: res.data.todayTrans
+    //     })
+
+    //   },
+    //   function (errorRes) {
+    //     console.log('获取失败的数据' + errorRes);
+    //   }
+    // )
+  console.log('-----' + dataJson.index.data)
+  return dataJson.index.data
+
+}
+//判断是升还是降
+function IsUp(rate){
+  if (parseFloat(rate) >= 0)
+  {
+    var value = '↑' + rate
+    return {'key':true,'value':value}
+  } else {
+    var value = '↓' + Math.abs(parseFloat(rate)) + '%'
+    return {'key': false, 'value': value }
+  } 
+}
 
 module.exports = {
   getTimes: getTimes,
   getValue: getValue,
+  getIndexData: getIndexData,
+  IsUp: IsUp,
 }

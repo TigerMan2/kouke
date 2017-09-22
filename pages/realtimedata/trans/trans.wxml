@@ -3,22 +3,22 @@
   <!-- 今日成功交易流水 -->
   <view class="transflow">
     <view class="transflow_title">今日成功交易流水(元)</view>
-    <view class="num">{{todayTrans}}</view>
+    <view class="num">{{transNo}}</view>
     <view class="trans_all">
       <view class="order_all">
         <text>发起交易订单(笔)</text>
-        <view class="order_no">86325</view>
-        <view class="rate up">↑6.34%</view>
+        <view class="order_no">{{trans_amount_today}}</view>
+        <view class="rate {{trans_amount_growth_rate.key? 'up' : 'down'}}">{{trans_amount_growth_rate.value}}</view>
       </view>
       <view class="order_all">
         <text>成功交易订单(笔)</text>
-        <view class="order_no">56637</view>
-        <view class="rate up">↑1.21%</view>
+        <view class="order_no">{{trans_amount_succ_today}}</view>
+        <view class="rate {{trans_amount_succ_growth_rate.key? 'up' : 'down'}}">{{trans_amount_succ_growth_rate.value}}</view>
       </view>
       <view class="order_all" style="border-right: none;">
         <text>交易成功率</text>
-        <view class="order_no">72.3%</view>
-        <view class="rate down">↓2.83%</view>
+        <view class="order_no">{{trans_amount_succ_today_rate}}</view>
+        <view class="rate {{trans_amount_succ_ratediff.key? 'up' : 'down'}}">{{trans_amount_succ_ratediff.value}}</view>
       </view>
     </view>
   </view>
@@ -26,7 +26,7 @@
   <!-- 今日成功交易流水趋势图 -->
   <view class="transchart">
      <text class="title-text">今日成功交易流水趋势图</text>
-     <canvas canvas-id="lineCanvas" disable-scroll='true' bindtouchstart='touchHandler' bindtouchmove='moveHandler' bindtouchend='touchEndHandler'></canvas> 
+     <canvas canvas-id="lineCanvas"></canvas> 
   </view>
   
   <!-- 今日新老商户 -->

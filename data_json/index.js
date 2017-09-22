@@ -1,4 +1,8 @@
 
+module.exports ={
+  
+}
+
 var index = {
   "code": 0,
   "msg": "查询数据成功！",
@@ -115,6 +119,4 @@ var index = {
     "trans_money_today": "10312127.44"
   }
 }
-module.exports = {
-  index: index,
-}
+module.exports.index = index
