@@ -139,13 +139,13 @@ canvas{
 }
 .organization_th,.organization_td{
   font-size: 28rpx;
-  width: 20%;
+  width: 23%;
 }
 .organization_td text{
   color: red;
 }
 .organization_trans{
-  width: 40%;
+  width: 31%;
 }
 
 /* 今日支付方式占比 */

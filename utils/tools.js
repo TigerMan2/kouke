@@ -25,8 +25,19 @@ function IsHavePsw(str){
   }
   return true;  
 }
+//展示信息
+function showWithInfo(info,success){
+  wx.showModal({
+    title: '',
+    content: info,
+    success:function(){
+      success()
+    }
+  })
+}
 
 module.exports = {
   IsPhoneNum: IsPhoneNum,
   IsHavePsw: IsHavePsw,
+  showWithInfo: showWithInfo,
 }

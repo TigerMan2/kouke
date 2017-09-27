@@ -75,14 +75,14 @@
     <view class="organization_table">
       <view class="organization_tr first">
         <view class="organization_th">机构名</view>
-        <view class="organization_th organization_trans">成功交易流水(元)</view>
+        <view class="organization_th organization_trans">交易流水(万元)</view>
         <view class="organization_th">昨日对比</view>
-        <view class="organization_th">图形化</view>
+        <view class="organization_th">交易成功率</view>
       </view>
       <view class="organization_tr" wx:for="{{organization}}" wx:key="{{*organization}}">
-        <view class="organization_td">{{item.organizationName}}</view>
-        <view class="organization_td organization_trans">{{item.trans}}</view>
-        <view class="organization_td down">↓{{item.rate}}</view>
+        <view class="organization_td">{{item.o}}</view>
+        <view class="organization_td organization_trans">{{item.m}}</view>
+        <view class="organization_td {{item.g.key?'up':'down'}}">{{item.g.value}}</view>
         <view class="organization_td" bindtap="checkChart">
           <image style="width: 50rpx; height: 50rpx;" src="../../../images/chart.png"></image>
         </view>
@@ -100,41 +100,19 @@
     <view class="swiper-box">  
     <!-- 金额占比 -->  
         <view class="content">
-          <view class="unionpay">
+          <view class="unionpay" wx:for="{{today_succ_transMoney_rate}}" wx:key="{{*transMoney}}">
             <view class="icon blue"></view>
-            <text>银联快捷</text>
+            <text>{{item.name}}</text>
             <view class="progress_bg">
-              <view class="blue" style="width: {{yinlian}}%;"></view>
-              <text>{{yinlian}}%</text>
+              <view class="blue" style="width: {{item.rate}};"></view>
+              <text>{{item.rate}}</text>
             </view>
-            <view class="progress_num">¥19332782.00</view>
-          </view>
-          <view class="unionpay">
-            <view class="icon green"></view>
-            <text>微信支付</text>
-            <view class="progress_bg">
-              <view class="green" style="width: {{wx}}%;"></view>
-              <text>{{wx}}%</text>
-            </view>
-            <view class="progress_num">¥19332782.00</view>
-          </view>
-          <view class="unionpay">
-            <view class="icon orange"></view>
-            <text>支付宝</text>
-            <view class="progress_bg">
-              <view class="orange" style="width: {{zfb}}%;"></view>
-              <text>{{zfb}}%</text>
-            </view>
-            <view class="progress_num">¥19332782.00</view>
-          </view>
-          <view class="unionpay">
-            <view class="icon red"></view>
-            <text>其他</text>
-            <view class="progress_bg">
-              <view class="red" style="width: {{qt}}%;"></view>
-              <text>{{qt}}%</text>
-            </view>
-            <view class="progress_num">¥19332782.00</view>
+            <block wx:if="{{currentTab==0}}">
+            <view class="progress_num">¥{{item.money}}</view>
+            </block>
+            <block wx:if="{{currentTab==1}}">
+            <view class="progress_num">{{item.amount}}</view>
+            </block>
           </view>
         </view>  
     </view>  

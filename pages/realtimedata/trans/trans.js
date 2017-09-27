@@ -1,12 +1,15 @@
 // pages/trans/trans.js
 //获取请求实例
 import NumberAnimate from "../../../common/NumberAnimate";
+var network = require('../../../utils/network.js');
 var wxChart = require('../../../utils/wxChartComplete.js');
 var util = require('../../../utils/util.js');
 var index_trans = require('../../../data/index_trans.js');
+var tools = require('../../../utils/tools.js');
 
 var lineChart = null;
 var startPos = null;
+var old_res = null;
 
 Page({
 
@@ -17,73 +20,13 @@ Page({
     // tab切换  
     currentTab: 0,
     currentTab1: 0,
-
-    yinlian:'41.21',//银联
-    wx:'26.33',//微信
-    zfb:'18.75',//支付宝
-    qt:'13.71',//其他
-
-    organization:[{
-      organizationName:'百付',
-      trans:'¥34242142.00',
-      rate:'2.83%',
-    }, {
-      organizationName: '乐汇通',
-      trans: '¥342442.00',
-      rate: '6.83%',
-      }, {
-        organizationName: 'E收银',
-        trans: '¥3424142.00',
-        rate: '6.34%',
-    }, {
-      organizationName: '睿付',
-      trans: '¥34242142.00',
-      rate: '2.83%',
-      }, {
-        organizationName: '合利宝',
-        trans: '¥34242142.00',
-        rate: '2.83%',
-    }, {
-      organizationName: '银商天下',
-      trans: '¥34242142.00',
-      rate: '2.83%',
-      }, {
-        organizationName: '百付',
-        trans: '¥34242142.00',
-        rate: '2.83%',
-      }],
-    area: [{
-      name: '福建',
-      num: 1200
-    },
-    {
-      name: '河南',
-      num: 1200
-    },
-    {
-      name: '江西',
-      num: 1200
-    },
-    {
-      name: '上海',
-      num: 1200
-    },
-    {
-      name: '北京',
-      num: 1200
-    },
-    {
-      name: '其他',
-      num: 1200
-    }]
-
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -91,12 +34,6 @@ Page({
    */
   onReady: function () {
     
-    
-
-    this.wxPieComplete()
-
-    this.getData()
-
   },
 
 
@@ -104,7 +41,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.request()
   },
 
   /**
@@ -125,14 +62,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
-    var that = this;
-
-    wx.stopPullDownRefresh();
-
-    setTimeout(function(){
-      that.getData()
-    },1000);
+    this.request()
   },
 
   /**
@@ -165,7 +95,6 @@ Page({
         this.setData({
           transNo: '¥' + n1.tempValue
         });
-        console.log('获取数字---' + n1.tempValue)
       }
     });
   },
@@ -183,21 +112,13 @@ Page({
       if (e.target.dataset.current == 0) {
         that.setData({
           currentTab: e.target.dataset.current,
-          yinlian: '41.21',//银联
-          wx: '26.33',//微信
-          zfb: '18.75',//支付宝
-          qt: '13.71',//其他
+          today_succ_transMoney_rate: old_res.today_succ_trans_money.today_succ_transMoney_rate
         });
-        console.log('11111111');
       } else {
         that.setData({
           currentTab: e.target.dataset.current,
-          yinlian: '80.21',//银联
-          wx: '46.33',//微信
-          zfb: '65.75',//支付宝
-          qt: '12.71',//其他
+          today_succ_transMoney_rate: old_res.today_trans_amount_about.trans_amount_succ_today_paymethod_rate
         });
-        console.log('11111111');
       }
     }
   },
@@ -213,67 +134,14 @@ Page({
       return false;
     } else {
       if (e.target.dataset.current == 0){
-        that.setData({
-          currentTab1: e.target.dataset.current,
-          area: [
-            {
-              name: '福建',
-              num: 1200
-            },
-            {
-              name: '河南',
-              num: 1200
-            },
-            {
-              name: '江西',
-              num: 1200
-            },
-            {
-              name: '上海',
-              num: 1200
-            },
-            {
-              name: '北京',
-              num: 1200
-            },
-            {
-              name: '其他',
-              num: 1200
-            }
-          ]
-        });
+        var pieData = old_res.today_succ_trans_money.today_region_commercial_tenant_count_rate
       }else{
-        that.setData({
-          currentTab1: e.target.dataset.current,
-          area: [
-            {
-              name: '广州',
-              num: 1500
-            },
-            {
-              name: '重庆',
-              num: 1300
-            },
-            {
-              name: '深圳',
-              num: 1000
-            },
-            {
-              name: '河北',
-              num: 800
-            },
-            {
-              name: '海南',
-              num: 600
-            },
-            {
-              name: '其他',
-              num: 100
-            }
-          ]
-        });
+        var pieData = old_res.today_trans_amount_about.today_region_consumed_rate
       }
-      this.wxPieComplete();
+      that.setData({
+        currentTab1: e.target.dataset.current,
+      });
+      wxChart.wxPieComplete(index_trans.createPieData(pieData), 'pieCanvas');
     }
   },
   /**
@@ -284,64 +152,7 @@ Page({
       url: '../chart/chart',
     })
   }, 
-  /**
-   * 区域图占比
-   */
-  wxPieComplete:function(){
-    var that = this;
-    console.log('数据' + that.data.area[3].num);
-    let windowWidth = 320;
-    try {
-      let res = wx.getSystemInfoSync();
-      windowWidth = res.windowWidth;
-    } catch (e) {
-      // do something when get system info failed
-    }
-    var Charts = require('../../../dist/wxcharts.js');
-    new Charts({
-      canvasId: 'pieCanvas',
-      type: 'pie',
-      series: [{
-        name: that.data.area[0].name,
-        data: that.data.area[0].num,
-        format: function (val) {
-          return that.data.area[0].name +val.toFixed(2) + '万';
-        }
-      }, {
-        name: that.data.area[1].name,
-        data: that.data.area[1].num,
-        format: function (val) {
-          return that.data.area[1].name +val.toFixed(2) + '万';
-        }
-        }, {
-          name: that.data.area[2].name,
-          data: that.data.area[2].num,
-          format: function (val) {
-            return that.data.area[2].name +val.toFixed(2) + '万';
-          }
-      }, {
-        name: that.data.area[3].name,
-        data: that.data.area[3].num,
-        format: function (val) {
-          return that.data.area[3].name +val.toFixed(2) + '万';
-        }
-        }, {
-          name: that.data.area[4].name,
-          data: that.data.area[4].num,
-          format: function (val) {
-            return that.data.area[4].name + val.toFixed(2) + '万';
-          }
-      }, {
-        name: that.data.area[5].name,
-        data: that.data.area[5].num,
-        format: function (val) {
-          return that.data.area[5].name + val.toFixed(2) + '万';
-        }
-      }],
-      width: windowWidth,
-      height: 300,
-    })
-  },
+  //获取折线图的数组
   createSimulationData: function (times,vList) {
     var categories = times;
     var data = vList;
@@ -350,17 +161,62 @@ Page({
       data: data
     }
   },
-  getData:function(){
-    var res = index_trans.getIndexData()
-    this.animation(parseInt(res.trans_money_today))
-    lineChart = wxChart.wxCharts(this.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.trans_money_shutcutpay_today_trend)), '成功交易', 'lineCanvas', 'line', false)
+  //加载请求
+  request:function(){
+    var that = this;
+    var token = wx.getStorageSync('token')
+    console.log(token)
+    network.GET(
+      'https://xcc.mypays.cn/index?token=' + token,
+      '',
+      function (res) {
+        if (res.code == 0){
+          old_res = res.data
+          that.getData(res.data)
+        }else
+        {
+          tools.showWithInfo(res.msg,function(){
+            wx.redirectTo({
+              url: '../../index/index',
+            })
+          })
+        }
+      },
+      function (errorRes) {
+        tools.showWithInfo('网络错误',null)
+      }
+    )
+  },
+  //获取数据
+  getData: function (res){
+    // res = index_trans.getIndexData()
+    if (res == null){
+      return
+    }
+    console.log('获取的数据' + res)
+    this.animation(parseFloat(res.today_succ_trans_money.today_succ_transMoney))
+    //折线图
+    lineChart = wxChart.wxCharts(this.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.today_succ_trans_trend)), '成功交易', 'lineCanvas', 'line', false)
+    //饼状图
+    var pieData = res.today_succ_trans_money.today_region_commercial_tenant_count_rate
+    wxChart.wxPieComplete(index_trans.createPieData(pieData),'pieCanvas');
     this.setData({
-      trans_amount_today: res.trans_amount_today,
-      trans_amount_succ_today: res.trans_amount_succ_today,
-      trans_amount_succ_today_rate: res.trans_amount_succ_today_rate,
-      trans_amount_growth_rate: index_trans.IsUp(res.trans_amount_growth_rate),
-      trans_amount_succ_growth_rate: index_trans.IsUp(res.trans_amount_succ_growth_rate),
-      trans_amount_succ_ratediff: index_trans.IsUp(res.trans_amount_succ_ratediff),
+      //发起交易订单
+      trans_amount_today: res.today_trans_amount_about.trans_amount_today,
+      //成功交易订单
+      trans_amount_succ_today: res.today_trans_amount_about.trans_amount_succ_today,
+      //交易成功率
+      trans_amount_succ_today_rate: res.today_trans_amount_about.trans_amount_succ_today_rate,
+      //发起交易增长率
+      trans_amount_growth_rate: index_trans.IsUp(res.today_trans_amount_about.trans_amount_growth_rate),
+      //成功交易增长率
+      trans_amount_succ_growth_rate: index_trans.IsUp(res.today_trans_amount_about.trans_amount_succ_growth_rate),
+      //交易成功增长率
+      trans_amount_succ_ratediff: index_trans.IsUp(res.today_trans_amount_about.trans_amount_succ_ratediff),
+      //支付方式占比
+      today_succ_transMoney_rate: res.today_succ_trans_money.today_succ_transMoney_rate,
+      //合作机构
+      organization: index_trans.getOrgation(res),
     })
   }
 

@@ -22,6 +22,7 @@ function request(method, url, params, success, fail) {
   //微信加载框
   wx.showLoading({
     title: '加载中',
+    mask: true,
   })
   //请求
   wx.request({
@@ -30,21 +31,18 @@ function request(method, url, params, success, fail) {
     method: method,//OPTIONS,GET,POST,HEAD,PUT,DELETE,TRACE,CONNECT
     //设置请求头的数据
     header: {
-      'Content-Type': 'json'
+      'Content-Type': 'application/x-www-form-urlencoded'
     },//设置请求头的header,请求头需要的参数添加
     //请求成功的返回
     success: function (res) {
       if (res.statusCode >= 200 && res.statusCode < 300) {
         //成功返回需要的数据
         success(res.data)
-        //请求成功，控制台打印数据
-        console.log('请求成功：' + res)
       } else {
         if (fail) {
           fail(res)
         } else {
           //请求失败，控制台打印失败数据
-          console.log('请求失败：' + res)
         }
       }
     },

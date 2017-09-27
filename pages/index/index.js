@@ -33,11 +33,33 @@ Page({
     })
   },
   bindInLogin: function () {
+    var that = this
+    if (reg.IsPhoneNum(this.data.username) && reg.IsHavePsw(this.data.password)) {
+      console.log('用户名：' + this.data.username + '密码：' + this.data.password)
+      network.POST(
+        'https://xcc.mypays.cn/login/byMobile',
+        {
+          'mobile': this.data.username,
+          'password': this.data.password
+        },
+        function(res){
+          console.log(res.msg)
+          if (res.code == 0)
+          {
+            wx.setStorageSync('token', res.data.data)
+            wx.switchTab({
+              url: '../realtimedata/trans/trans',
+            })
 
-    // if (reg.IsPhoneNum(this.data.username) && reg.IsHavePsw(this.data.password)) {
-    wx.switchTab({
-      url: '../realtimedata/trans/trans',
-    })
-    // }
-  }
+          }else
+          {
+            reg.showWithInfo(res.msg,null)
+          }
+        },
+        function(errorRes){
+          reg.showWithInfo('网络错误',null)
+        }
+      )
+    }
+  },
 })

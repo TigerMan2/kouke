@@ -92,9 +92,27 @@ function wxconsume(simulationData, canvasId) {
     height: 300,
   });
 }
+//饼状图
+function wxPieComplete(resArea, canvasId) {
+  let windowWidth = 320;
+  try {
+    let res = wx.getSystemInfoSync();
+    windowWidth = res.windowWidth;
+  } catch (e) {
+    // do something when get system info failed
+  }
+  new Charts({
+    canvasId: canvasId,
+    type: 'pie',
+    series: resArea,
+    width: windowWidth,
+    height: 300,
+  })
+}
 
 module.exports = {
   wxCharts: wxCharts,
   wxconsume: wxconsume,
   columnCharts: columnCharts,
+  wxPieComplete: wxPieComplete,
 }

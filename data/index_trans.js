@@ -1,4 +1,3 @@
-var network = require('../utils/network.js');
 var dataJson = require('../data_json/index.js');
 
 
@@ -43,24 +42,9 @@ function formatNumber(n) {
 }
 //获取首页数据
 function getIndexData(){
-  // network.GET(
-    //   'http://192.168.1.37:8088/index',
-    //   '',
-    //   function (res) {
-    //     //今日交易趋势折线图
-    //     lineChart = wxChart.wxCharts(that.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.data.todayTransGroupbyHour_Shutcutpay)), '成功交易', 'lineCanvas', 'line',false)
-    //     //设置基础值
-    //     that.setData({
-    //       todayTrans: res.data.todayTrans
-    //     })
-
-    //   },
-    //   function (errorRes) {
-    //     console.log('获取失败的数据' + errorRes);
-    //   }
-    // )
-  console.log('-----' + dataJson.index.data)
-  return dataJson.index.data
+  // var resData = null
+  // return resData
+  // return dataJson.index.data
 
 }
 //判断是升还是降
@@ -75,9 +59,51 @@ function IsUp(rate){
   } 
 }
 
+//处理合作机构的数组
+function getOrgation(res){
+  var resData = res.today_agent_trans
+  if (resData[0]['g']['value']){
+    return resData
+  } 
+  for (var v in resData){
+    var orgation = resData[v]
+    if (parseFloat(orgation['g']) >= 0)
+    {
+      var value = '↑' + orgation['g'] 
+      orgation['g'] = { 'key': true, 'value': value }
+    }else
+    {
+      var value = '↓' + Math.abs(parseFloat(orgation['g'])) + '%'
+      orgation['g'] = { 'key': false, 'value': value }
+    }
+    resData[v] = orgation
+    console.log('获取到的数据：' + orgation['g']['key'])
+  }
+  return resData
+}
+
+//获取饼状图的数组
+function createPieData(resData){
+  var series = new Array()
+  for (var v in resData)
+  {
+    var series_data = {}
+    series_data = {
+      name: resData[v]['k'],
+      data: parseFloat(resData[v]['v']),
+    }
+    series.push(series_data)
+    console.log('+++++++' + series_data)
+  }
+  return series
+}
+
+
 module.exports = {
   getTimes: getTimes,
   getValue: getValue,
   getIndexData: getIndexData,
   IsUp: IsUp,
+  getOrgation: getOrgation,
+  createPieData: createPieData,
 }

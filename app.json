@@ -1,9 +1,10 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs",
-
+    
     "pages/realtimedata/trans/trans",
+    "pages/logs/logs",
+    "pages/index/index",
+
     "pages/realtimedata/chart/chart",
 
     "pages/analyse/list/list",
@@ -50,7 +51,7 @@
     }]
   },
   "networkTimeout": {
-    "request": 20000,
+    "request": 10000,
     "connectSocket": 20000,
     "uploadFile": 20000,
     "downloadFile": 20000
