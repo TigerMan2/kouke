@@ -7,43 +7,43 @@
     <view class="trans_all">
       <view class="order_all">
         <text>发起支付(笔)</text>
-        <view class="order_no">{{trans_amount_today}}</view>
-        <view class="rate {{trans_amount_growth_rate.key? 'up' : 'down'}}">{{trans_amount_growth_rate.value}}</view>
+        <view class="order_no">{{allTrans}}</view>
+        <view class="rate {{allTrans_growRate.key? 'up' : 'down'}}">{{allTrans_growRate.value}}</view>
       </view>
       <view class="order_all">
         <text>支付成功(笔)</text>
-        <view class="order_no">{{trans_amount_succ_today}}</view>
-        <view class="rate {{trans_amount_succ_growth_rate.key? 'up' : 'down'}}">{{trans_amount_succ_growth_rate.value}}</view>
+        <view class="order_no">{{succTrans}}</view>
+        <view class="rate {{succTrans_growRate.key? 'up' : 'down'}}">{{succTrans_growRate.value}}</view>
       </view>
       <view class="order_all">
         <text>提现成功(笔)</text>
-        <view class="order_no">{{trans_amount_today_pay_succWithdraw}}</view>
-        <view class="rate {{trans_amount_today_pay_succWithdraw_rate.key? 'up' : 'down'}}">{{trans_amount_today_pay_succWithdraw_rate.value}}</view>
+        <view class="order_no">{{withdrawSucc}}</view>
+        <view class="rate {{withdrawSucc_rate.key? 'up' : 'down'}}">{{withdrawSucc_rate.value}}</view>
       </view>
       <view class="order_all" style="border-right: none;">
         <text>交易成功率</text>
-        <view class="order_no">{{trans_amount_succ_today_rate}}</view>
-        <view class="rate {{trans_amount_succ_ratediff.key? 'up' : 'down'}}">{{trans_amount_succ_ratediff.value}}</view>
+        <view class="order_no">{{succTrans_rate}}</view>
+        <view class="rate {{succTrans_growRatediff.key? 'up' : 'down'}}">{{succTrans_growRatediff.value}}</view>
       </view>
     </view>
      <view class="table style='{margin}'">
       <view class="tr">
         <view class="td td_title">支付失败</view>
-        <view class="td last_td">{{trans_amount_today_pay_fail}}</view>
+        <view class="td last_td">{{payFail}}</view>
         <view class="td td_title">提现失败</view>
-        <view class="td last_td">{{trans_amount_today_pay_failWithdraw}}</view>
+        <view class="td last_td">{{withdrawFail}}</view>
       </view>
       <view class="tr">
         <view class="td td_title">支付申请</view>
-        <view class="td last_td">{{trans_amount_today_pay_request}}</view>
+        <view class="td last_td">{{payRequest}}</view>
         <view class="td td_title">提现申请</view>
-        <view class="td last_td">{{trans_amount_today_pay_requestWithdraw}}</view>
+        <view class="td last_td">{{withdrawRequest}}</view>
       </view>
       <view class="tr">
         <view class="td td_title">支付处理中</view>
-        <view class="td last_td">{{trans_amount_today_pay_submit}}</view>
+        <view class="td last_td">{{paySubmit}}</view>
         <view class="td td_title">提现处理中</view>
-        <view class="td last_td">{{trans_amount_today_pay_submitWithdraw}}</view>
+        <view class="td last_td">{{withdrawSubmit}}</view>
       </view>
     </view> 
   </view>
@@ -102,15 +102,15 @@
         <view class="organization_th">机构名</view>
         <view class="organization_th organization_trans">交易流水(万元)</view>
         <view class="organization_th">昨日对比</view>
-        <view class="organization_th">交易成功率</view>
+        <view class="organization_th">图形化</view>
       </view>
       <view class="organization_tr" wx:for="{{organization}}" wx:key="{{*organization}}">
         <view class="organization_td">{{item.o}}</view>
         <view class="organization_td organization_trans">{{item.m}}</view>
         <view class="organization_td {{item.g.key?'up':'down'}}">{{item.g.value}}</view>
-        <view class="organization_td" bindtap="checkChart">
+         <view class="organization_td" bindtap="checkChart" data-id='{{item.id}}' data-title='{{item.o}}'> 
           <image style="width: 50rpx; height: 50rpx;" src="../../../images/chart.png"></image>
-        </view>
+          </view>
       </view>
     </view>
   </view>

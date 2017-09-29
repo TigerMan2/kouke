@@ -2,6 +2,7 @@
   "pages":[
 
     "pages/realtimedata/trans/trans",
+    "pages/realtimedata/chart/chart",
     "pages/index/index",
     "pages/logs/logs"
     
@@ -9,11 +10,11 @@
   "window":{
     "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#297EFC",
-    "navigationBarTitleText": "抠客",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle":"white"
   },
   "networkTimeout": {
-    "request": 10000,
+    "request": 30000,
     "connectSocket": 20000,
     "uploadFile": 20000,
     "downloadFile": 20000

@@ -33,7 +33,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    this.request()
   },
 
 
@@ -41,7 +41,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.request()
+    
   },
 
   /**
@@ -147,9 +147,10 @@ Page({
   /**
    * 查看图形化
    */
-  checkChart:function(){
+  checkChart:function(e){
+    var $data = e.currentTarget.dataset
     wx.navigateTo({
-      url: '../chart/chart',
+      url: '../chart/chart?id=' + $data.id + '&title=' + $data.title,
     })
   }, 
   //获取折线图的数组
@@ -164,10 +165,8 @@ Page({
   //加载请求
   request:function(){
     var that = this;
-    var token = wx.getStorageSync('token')
-    console.log(token)
     network.GET(
-      'index?token=' + token,
+      'index?token=' + wx.getStorageSync('token'),
       // 'http://192.168.1.37:8666/index',
       '',
       function (res) {
@@ -203,33 +202,33 @@ Page({
     wxChart.wxPieComplete(index_trans.createPieData(pieData),'pieCanvas');
     this.setData({
       //发起交易订单
-      trans_amount_today: res.today_trans_amount_about.trans_amount_today,
+      allTrans: res.today_trans_amount_about.trans_amount_today,
       //成功交易订单
-      trans_amount_succ_today: res.today_trans_amount_about.trans_amount_succ_today,
+      succTrans: res.today_trans_amount_about.trans_amount_succ_today,
       //交易成功率
-      trans_amount_succ_today_rate: res.today_trans_amount_about.trans_amount_succ_today_rate,
+      succTrans_rate: res.today_trans_amount_about.trans_amount_succ_today_rate,
       //发起交易增长率
-      trans_amount_growth_rate: index_trans.IsUp(res.today_trans_amount_about.trans_amount_growth_rate),
+      allTrans_growRate: index_trans.IsUp(res.today_trans_amount_about.trans_amount_growth_rate),
       //成功交易增长率
-      trans_amount_succ_growth_rate: index_trans.IsUp(res.today_trans_amount_about.trans_amount_succ_growth_rate),
+      succTrans_growRate: index_trans.IsUp(res.today_trans_amount_about.trans_amount_succ_growth_rate),
       //交易成功增长率
-      trans_amount_succ_ratediff: index_trans.IsUp(res.today_trans_amount_about.trans_amount_succ_ratediff),
+      succTrans_growRatediff: index_trans.IsUp(res.today_trans_amount_about.trans_amount_succ_ratediff),
       //支付申请
-      trans_amount_today_pay_request: res.today_trans_amount_about.trans_amount_today_pay_request,
+      payRequest: res.today_trans_amount_about.trans_amount_today_pay_request,
       //支付处理中
-      trans_amount_today_pay_submit: res.today_trans_amount_about.trans_amount_today_pay_submit,
+      paySubmit: res.today_trans_amount_about.trans_amount_today_pay_submit,
       //支付失败
-      trans_amount_today_pay_fail: res.today_trans_amount_about.trans_amount_today_pay_fail,
+      payFail: res.today_trans_amount_about.trans_amount_today_pay_fail,
       //提现成功
-      trans_amount_today_pay_succWithdraw: res.today_trans_withdrawals_amount_about['trans_amount_today_pay_succWithdraw '],
+      withdrawSucc: res.today_trans_withdrawals_amount_about.trans_amount_today_pay_succWithdraw,
       //提现失败
-      trans_amount_today_pay_failWithdraw: res.today_trans_withdrawals_amount_about['trans_amount_today_pay_failWithdraw '],
+      withdrawFail: res.today_trans_withdrawals_amount_about.trans_amount_today_pay_failWithdraw,
       //提现申请
-      trans_amount_today_pay_requestWithdraw: res.today_trans_withdrawals_amount_about['trans_amount_today_pay_requestWithdraw '],
+      withdrawRequest: res.today_trans_withdrawals_amount_about.trans_amount_today_pay_requestWithdraw,
       //提现处理中
-      trans_amount_today_pay_submitWithdraw: res.today_trans_withdrawals_amount_about['trans_amount_today_pay_submitWithdraw '],
+      withdrawSubmit: res.today_trans_withdrawals_amount_about.trans_amount_today_pay_submitWithdraw,
       //提现成功率
-      trans_amount_today_pay_succWithdraw_rate: index_trans.IsUp(res.today_trans_withdrawals_amount_about.trans_amount_today_pay_succWithdraw_rate),
+      withdrawSucc_rate: index_trans.IsUp(res.today_trans_withdrawals_amount_about.trans_amount_today_pay_succWithdraw_rate),
       //今日单商户最高消费
       today_consumed_top: res.today_consumed_commercial_tenant_top_one,
       //人均日消费金额

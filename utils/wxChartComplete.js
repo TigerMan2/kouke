@@ -17,7 +17,7 @@ function wxCharts(simulationData, name, canvasId, chartStyle, isScroll){
       name: name,
       data: simulationData.data,
       format: function (val, name) {
-        return val.toFixed(2);
+        return val;
       }
     }],
     yAxis: {

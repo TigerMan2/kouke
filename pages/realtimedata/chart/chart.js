@@ -1,5 +1,7 @@
 // pages/chart/chart.js
 var wxChart = require('../../../utils/wxChartComplete.js');
+var network = require('../../../utils/network.js');
+var index_trans = require('../../../data/index_trans.js');
 
 var lineChart = null;
 var startPos = null;
@@ -18,6 +20,11 @@ Page({
    */
   onLoad: function (options) {
 
+    this.setData({
+      id:options.id,
+      title:options.title
+    })
+
   },
 
   /**
@@ -25,15 +32,18 @@ Page({
    */
   onReady: function () {
     
-    lineChart = wxChart.wxCharts(this.createSimulationData(), '成功交易', 'lineCanvas','line',true);
-
+    this.request()
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this
+    wx.setNavigationBarTitle({
+      title: that.data.title,
+    })
   },
 
   /**
@@ -84,12 +94,36 @@ Page({
       }
     });
   },
-  createSimulationData: function () {
-    var categories = ['0时', '1时', '2时', '3时', '4时', '5时', '6时', '7时', '8时', '9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时'];
-    var data = [15, 20, 45, 37, 8, 20, 45, 37, 8, 20, 45, 37, 8, 20, 15, 20, 45, 37, 8, 20, 45, 37, 8, 20];
+  //获取折线图的数组
+  createSimulationData: function (times, vList) {
+    var categories = times;
+    var data = vList;
     return {
       categories: categories,
       data: data
     }
+  },
+  //加载请求
+  request: function () {
+    var that = this;
+    network.GET(
+      'index/succTransTrendByAppId?appId=' + this.data.id +'&token=' + wx.getStorageInfoSync('token'),
+      '',
+      function (res) {
+        if (res.code == 0) {
+          //折线图
+          lineChart = wxChart.wxCharts(that.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.data)), '成功交易', 'lineCanvas', 'line', true)
+        } else {
+          tools.showWithInfo(res.msg, function () {
+            wx.redirectTo({
+              url: '../../index/index',
+            })
+          })
+        }
+      },
+      function (errorRes) {
+        tools.showWithInfo('网络错误', function () { })
+      }
+    )
   },
 })
