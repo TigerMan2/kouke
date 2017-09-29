@@ -629,7 +629,7 @@ function fixColumeData(points, eachSpacing, columnLen, index, config, opts) {
 function getXAxisPoints(categories, opts, config) {
     var yAxisTotalWidth = config.yAxisWidth + config.yAxisTitleWidth;
     var spacingValid = opts.width - 2 * config.padding - yAxisTotalWidth;
-    var dataCount = opts.enableScroll ? Math.min(8, categories.length) : categories.length;
+    var dataCount = opts.enableScroll ? Math.min(10, categories.length) : categories.length;
     var eachSpacing = spacingValid / dataCount;
 
     var xAxisPoints = [];
@@ -854,7 +854,7 @@ function drawPieText(series, opts, config, context, radius, center) {
 
     var seriesConvert = series.map(function (item) {
         var arc = 2 * Math.PI - (item._start_ + 2 * Math.PI * item._proportion_ / 2);
-        var text = item.format ? item.format(+item._proportion_.toFixed(2)) : item.name+'('+item.data+'万)';
+        var text = item.format ? item.format(+item._proportion_.toFixed(2)) : item.name+'('+item.data+')';
         var color = item.color;
         return { arc: arc, text: text, color: color };
     });

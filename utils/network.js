@@ -1,7 +1,7 @@
 
 //微信小程序请求的二次封装
-// var API_URL = 'http://report.mypays.cn/'
-var API_URL = 'http://192.168.1.37:8666/'
+var API_URL = 'http://report.mypays.cn/'
+// var API_URL = 'http://192.168.1.37:8666/'
 // var API_URL = 'https://xcc.mypays.cn:8443/'
 
 

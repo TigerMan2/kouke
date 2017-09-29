@@ -100,7 +100,7 @@
     <view class="organization_table">
       <view class="organization_tr first">
         <view class="organization_th">机构名</view>
-        <view class="organization_th organization_trans">交易流水(万元)</view>
+        <view class="organization_th organization_trans">交易流水(万)</view>
         <view class="organization_th">昨日对比</view>
         <view class="organization_th">图形化</view>
       </view>
@@ -133,7 +133,7 @@
               <text>{{item.rate}}</text>
             </view>
             <block wx:if="{{currentTab==0}}">
-            <view class="progress_num">{{item.money}}万元</view>
+            <view class="progress_num">{{item.money}}万</view>
             </block>
             <block wx:if="{{currentTab==1}}">
             <view class="progress_num">{{item.amount}}笔</view>
@@ -147,7 +147,7 @@
   <view class="paytype">
     <text class="title-text">今日地区占比</text> 
     <view class="swiper-tab">  
-      <view class="swiper-tab-list {{currentTab1==0 ? 'on' : ''}}" data-current="0" bindtap="swichTab">消费占比</view>  
+      <view class="swiper-tab-list {{currentTab1==0 ? 'on' : ''}}" data-current="0" bindtap="swichTab">消费占比(万)</view>  
       <view class="swiper-tab-list {{currentTab1==1 ? 'on' : ''}}" data-current="1" bindtap="swichTab">商户数占比</view>
     </view>
     <view class="swiper-box">  

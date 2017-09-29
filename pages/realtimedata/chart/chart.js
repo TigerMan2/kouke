@@ -107,7 +107,7 @@ Page({
   request: function () {
     var that = this;
     network.GET(
-      'index/succTransTrendByAppId?appId=' + this.data.id +'&token=' + wx.getStorageInfoSync('token'),
+      'index/succTransTrendByAppId?appId=' + this.data.id +'&token=' + wx.getStorageSync('token'),
       '',
       function (res) {
         if (res.code == 0) {
