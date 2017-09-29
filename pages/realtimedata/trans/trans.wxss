@@ -10,15 +10,15 @@
 }
 .transflow_title{
   color: #939393;
-  font-size: 24rpx;
+  font-size: 26rpx;
 }
 .num{
   color: #FD7E1E;
   font-size: 50rpx;
+  margin-top: 20rpx;
 }
 .trans_all{
   display: flex;
-  margin-top: 40rpx;
   padding: 20rpx;
 }
 .order_all{
@@ -30,13 +30,12 @@
   color: #939393;
 }
 .order_no{
-  font-size: 28rpx;
+  font-size: 36rpx;
   margin: 10rpx;
 }
 .rate{
   font-size: 24rpx;
 }
-
 /* 今日成功交易流水趋势图 */
 .transchart{
   width: 100%;  
@@ -83,13 +82,13 @@ canvas{
   border: 4rpx solid #E9E9E9;
   border-right: 0;
   border-bottom: 0;
-  margin: 40rpx;
+  margin: 0rpx 40rpx;
 }
 .tr{
   align-items: center;
-  height: 100rpx;
   position: relative; 
   text-align: center;
+  height: 100rpx;
   line-height: 96rpx;
   width: 100%;
   display: flex;
@@ -98,15 +97,15 @@ canvas{
 .td{
   border-bottom: 4rpx solid #E9E9E9;
   border-right: 4rpx solid #E9E9E9;
+  width: 50%;
+  font-size: 22rpx;
 }
 .td_title{
-  width: 45%;
-  font-size: 22rpx;
-  color: #9F9F9F;
   background-color: #F7F7F7;
+  color: #9F9F9F;
 }
 .last_td{
-  width: 55%;
+  width: 50%;
   font-size: 30rpx;
 }
 

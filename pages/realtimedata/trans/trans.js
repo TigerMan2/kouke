@@ -167,7 +167,8 @@ Page({
     var token = wx.getStorageSync('token')
     console.log(token)
     network.GET(
-      'https://xcc.mypays.cn/index?token=' + token,
+      'index?token=' + token,
+      // 'http://192.168.1.37:8666/index',
       '',
       function (res) {
         if (res.code == 0){
@@ -183,7 +184,7 @@ Page({
         }
       },
       function (errorRes) {
-        tools.showWithInfo('网络错误',null)
+        tools.showWithInfo('网络错误', function(){})
       }
     )
   },
@@ -193,7 +194,7 @@ Page({
     if (res == null){
       return
     }
-    console.log('获取的数据' + res)
+    
     this.animation(parseFloat(res.today_succ_trans_money.today_succ_transMoney))
     //折线图
     lineChart = wxChart.wxCharts(this.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.today_succ_trans_trend)), '成功交易', 'lineCanvas', 'line', false)
@@ -213,6 +214,30 @@ Page({
       trans_amount_succ_growth_rate: index_trans.IsUp(res.today_trans_amount_about.trans_amount_succ_growth_rate),
       //交易成功增长率
       trans_amount_succ_ratediff: index_trans.IsUp(res.today_trans_amount_about.trans_amount_succ_ratediff),
+      //支付申请
+      trans_amount_today_pay_request: res.today_trans_amount_about.trans_amount_today_pay_request,
+      //支付处理中
+      trans_amount_today_pay_submit: res.today_trans_amount_about.trans_amount_today_pay_submit,
+      //支付失败
+      trans_amount_today_pay_fail: res.today_trans_amount_about.trans_amount_today_pay_fail,
+      //提现成功
+      trans_amount_today_pay_succWithdraw: res.today_trans_withdrawals_amount_about['trans_amount_today_pay_succWithdraw '],
+      //提现失败
+      trans_amount_today_pay_failWithdraw: res.today_trans_withdrawals_amount_about['trans_amount_today_pay_failWithdraw '],
+      //提现申请
+      trans_amount_today_pay_requestWithdraw: res.today_trans_withdrawals_amount_about['trans_amount_today_pay_requestWithdraw '],
+      //提现处理中
+      trans_amount_today_pay_submitWithdraw: res.today_trans_withdrawals_amount_about['trans_amount_today_pay_submitWithdraw '],
+      //提现成功率
+      trans_amount_today_pay_succWithdraw_rate: index_trans.IsUp(res.today_trans_withdrawals_amount_about.trans_amount_today_pay_succWithdraw_rate),
+      //今日单商户最高消费
+      today_consumed_top: res.today_consumed_commercial_tenant_top_one,
+      //人均日消费金额
+      avg_succ_trans:res.today_succ_trans_money.avg_succ_trans,
+      //今日新入网人数
+      new_online: res.today_new_online_commercial_tenant,
+      //人均日消费次数
+      trans_amount: res.today_trans_amount_about.avg_succ_trans_amount,
       //支付方式占比
       today_succ_transMoney_rate: res.today_succ_trans_money.today_succ_transMoney_rate,
       //合作机构

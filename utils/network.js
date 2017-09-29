@@ -1,6 +1,7 @@
 
 //微信小程序请求的二次封装
-// var API_URL = 'http://125.77.23.88:8892/' //测试环境 
+// var API_URL = 'http://report.mypays.cn/' 
+var API_URL = 'http://192.168.1.37:8088/'
 
 
 //GET
@@ -26,12 +27,13 @@ function request(method, url, params, success, fail) {
   })
   //请求
   wx.request({
-    url: url,
+    url: API_URL + url,
     data: params,
     method: method,//OPTIONS,GET,POST,HEAD,PUT,DELETE,TRACE,CONNECT
     //设置请求头的数据
     header: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      // 'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'json'
     },//设置请求头的header,请求头需要的参数添加
     //请求成功的返回
     success: function (res) {
@@ -48,6 +50,7 @@ function request(method, url, params, success, fail) {
     },
     //请求失败的返回
     fail: function (errorRes) {
+      console.log(errorRes)
       if (fail) {
         fail(errorRes)
       } else {

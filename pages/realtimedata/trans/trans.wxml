@@ -6,14 +6,19 @@
     <view class="num">{{transNo}}</view>
     <view class="trans_all">
       <view class="order_all">
-        <text>发起交易订单(笔)</text>
+        <text>发起支付(笔)</text>
         <view class="order_no">{{trans_amount_today}}</view>
         <view class="rate {{trans_amount_growth_rate.key? 'up' : 'down'}}">{{trans_amount_growth_rate.value}}</view>
       </view>
       <view class="order_all">
-        <text>成功交易订单(笔)</text>
+        <text>支付成功(笔)</text>
         <view class="order_no">{{trans_amount_succ_today}}</view>
         <view class="rate {{trans_amount_succ_growth_rate.key? 'up' : 'down'}}">{{trans_amount_succ_growth_rate.value}}</view>
+      </view>
+      <view class="order_all">
+        <text>提现成功(笔)</text>
+        <view class="order_no">{{trans_amount_today_pay_succWithdraw}}</view>
+        <view class="rate {{trans_amount_today_pay_succWithdraw_rate.key? 'up' : 'down'}}">{{trans_amount_today_pay_succWithdraw_rate.value}}</view>
       </view>
       <view class="order_all" style="border-right: none;">
         <text>交易成功率</text>
@@ -21,6 +26,26 @@
         <view class="rate {{trans_amount_succ_ratediff.key? 'up' : 'down'}}">{{trans_amount_succ_ratediff.value}}</view>
       </view>
     </view>
+     <view class="table style='{margin}'">
+      <view class="tr">
+        <view class="td td_title">支付失败</view>
+        <view class="td last_td">{{trans_amount_today_pay_fail}}</view>
+        <view class="td td_title">提现失败</view>
+        <view class="td last_td">{{trans_amount_today_pay_failWithdraw}}</view>
+      </view>
+      <view class="tr">
+        <view class="td td_title">支付申请</view>
+        <view class="td last_td">{{trans_amount_today_pay_request}}</view>
+        <view class="td td_title">提现申请</view>
+        <view class="td last_td">{{trans_amount_today_pay_requestWithdraw}}</view>
+      </view>
+      <view class="tr">
+        <view class="td td_title">支付处理中</view>
+        <view class="td last_td">{{trans_amount_today_pay_submit}}</view>
+        <view class="td td_title">提现处理中</view>
+        <view class="td last_td">{{trans_amount_today_pay_submitWithdraw}}</view>
+      </view>
+    </view> 
   </view>
 
   <!-- 今日成功交易流水趋势图 -->
@@ -38,33 +63,33 @@
       </view>
       <view class="user_all">
         <view class="user_title">老活跃商户</view>
-        <view class="user_no">56637</view>
+        <view class="user_no">--</view>
       </view>
       <view class="user_all" style="border-right: none;">
         <view class="user_title">新入网商户</view>
-        <view class="user_no">4624</view>
+        <view class="user_no">{{new_online}}</view>
       </view>
     </view>
     <view class="table">
       <view class="tr">
         <view class="td td_title">今日单商户最高消费金额</view>
-        <view class="td last_td">¥2414114.41</view>
+        <view class="td last_td">¥{{today_consumed_top}}</view>
       </view>
       <view class="tr">
         <view class="td td_title">人均日消费金额</view>
-        <view class="td last_td">¥2412332344.41</view>
+        <view class="td last_td">¥{{avg_succ_trans}}</view>
       </view>
       <view class="tr">
         <view class="td td_title">人均日消费次数</view>
-        <view class="td last_td">8</view>
+        <view class="td last_td">{{trans_amount}}</view>
       </view>
       <view class="tr">
         <view class="td td_title">活跃用户百分比</view>
-        <view class="td last_td">90%</view>
+        <view class="td last_td">--</view>
       </view>
       <view class="tr">
         <view class="td td_title">新增商户百分比</view>
-        <view class="td last_td">80%</view>
+        <view class="td last_td">--</view>
       </view>
     </view>
   </view>

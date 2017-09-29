@@ -35,29 +35,24 @@ Page({
   bindInLogin: function () {
     var that = this
     if (reg.IsPhoneNum(this.data.username) && reg.IsHavePsw(this.data.password)) {
-      console.log('用户名：' + this.data.username + '密码：' + this.data.password)
-      network.POST(
-        'https://xcc.mypays.cn/login/byMobile',
-        {
-          'mobile': this.data.username,
-          'password': this.data.password
-        },
+      network.GET(
+        'login/byMobile?mobile=' + this.data.username + '&password=' + this.data.password,
+        '',
         function(res){
-          console.log(res.msg)
           if (res.code == 0)
           {
-            wx.setStorageSync('token', res.data.data)
-            wx.switchTab({
+            wx.setStorageSync('token', res.data)
+            wx.redirectTo({
               url: '../realtimedata/trans/trans',
             })
 
           }else
           {
-            reg.showWithInfo(res.msg,null)
+            reg.showWithInfo(res.msg,function(){})
           }
         },
         function(errorRes){
-          reg.showWithInfo('网络错误',null)
+          reg.showWithInfo('网络错误',function(){})
         }
       )
     }

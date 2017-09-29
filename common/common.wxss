@@ -10,10 +10,10 @@
 .red{
   background-color: #EB0F77;
 }
-.up{
+.down{
   color: #297EFC;
 }
-.down{
+.up{
   color: red;
 }
 .align-center{
@@ -24,4 +24,7 @@
 }
 .gray{
   background-color: #F7F7F7;
+}
+.top-margen{
+  margin-top: 0;
 }
