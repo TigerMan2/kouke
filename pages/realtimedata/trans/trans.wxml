@@ -133,10 +133,10 @@
               <text>{{item.rate}}</text>
             </view>
             <block wx:if="{{currentTab==0}}">
-            <view class="progress_num">¥{{item.money}}</view>
+            <view class="progress_num">{{item.money}}万元</view>
             </block>
             <block wx:if="{{currentTab==1}}">
-            <view class="progress_num">{{item.amount}}</view>
+            <view class="progress_num">{{item.amount}}笔</view>
             </block>
           </view>
         </view>  
