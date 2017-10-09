@@ -10,9 +10,9 @@ var reg = require('../../utils/tools.js');
 Page({
   data: {
     // 用户名
-    username: '',
+    username: '13800138000',
     //密码
-    password: '',
+    password: '138000',
   },
   onLoad: function () {
     
@@ -42,7 +42,7 @@ Page({
           if (res.code == 0)
           {
             wx.setStorageSync('token', res.data)
-            wx.redirectTo({
+            wx.switchTab({
               url: '../realtimedata/trans/trans',
             })
 

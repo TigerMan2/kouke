@@ -1,10 +1,10 @@
 <!--index.wxml-->
 <view class="loginView">
   <view class="username">
-     <input placeholder="请输入手机号" bindinput="getUsername" type='number'/> 
+     <input placeholder="请输入手机号" value='{{username}}' bindinput="getUsername" type='number'/> 
   </view>
   <view class="username">
-     <input placeholder="请输入密码" bindinput="getPassword" password='true'/> 
+     <input placeholder="请输入密码" value='{{password}}' bindinput="getPassword" password='true'/> 
   </view>
   <button class="login" bindtap="bindInLogin">登录</button>
 </view>
