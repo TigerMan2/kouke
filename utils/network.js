@@ -1,7 +1,8 @@
 
 //微信小程序请求的二次封装
-var API_URL = 'http://report.mypays.cn/'
+// var API_URL = 'http://report.mypays.cn/'
 // var API_URL = 'http://192.168.1.37:8666/'
+var API_URL = 'http://192.168.1.37:8088/'
 // var API_URL = 'https://xcc.mypays.cn:8443/'
 
 
@@ -38,6 +39,7 @@ function request(method, url, params, success, fail) {
     },//设置请求头的header,请求头需要的参数添加
     //请求成功的返回
     success: function (res) {
+      wx.hideLoading();//完成，取消提示框
       if (res.statusCode >= 200 && res.statusCode < 300) {
         //成功返回需要的数据
         success(res.data)
@@ -51,6 +53,7 @@ function request(method, url, params, success, fail) {
     },
     //请求失败的返回
     fail: function (errorRes) {
+      wx.hideLoading();//完成，取消提示框
       console.log(errorRes)
       if (fail) {
         fail(errorRes)
@@ -61,7 +64,6 @@ function request(method, url, params, success, fail) {
     },
     complete: function () {
       wx.hideLoading();//完成，取消提示框
-      wx.stopPullDownRefresh();//结束下拉刷新
     }
   })
 }
