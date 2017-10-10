@@ -104,7 +104,7 @@
         <view class="organization_th">昨日对比</view>
         <view class="organization_th">图形化</view>
       </view>
-      <view class="organization_tr" wx:for="{{organization}}" wx:key="{{*organization}}">
+      <view class="organization_tr" wx:for="{{organization}}" wx:key="{{*organization}}" wx:if="{{organization.length > 0}}">
         <view class="organization_td">{{item.o}}</view>
         <view class="organization_td organization_trans">{{item.m}}</view>
         <view class="organization_td {{item.g.key?'up':'down'}}">{{item.g.value}}</view>
@@ -114,7 +114,6 @@
       </view>
     </view>
   </view>
-
   <!-- 今日支付方式占比 -->
   <view class="paytype">
     <text class="title-text">今日支付方式占比</text> 
