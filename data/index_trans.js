@@ -62,6 +62,9 @@ function IsUp(rate){
 //处理合作机构的数组
 function getOrgation(res){
   var resData = res.today_agent_trans
+  if (resData.length == 0) {
+    return []
+  }
   if (resData[0]['g']['value']){
     return resData
   } 
