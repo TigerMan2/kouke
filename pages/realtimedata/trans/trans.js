@@ -25,7 +25,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.request()
+    
   },
 
   /**
@@ -35,12 +35,11 @@ Page({
     
   },
 
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.request()
   },
 
   /**
@@ -164,6 +163,7 @@ Page({
   //加载请求
   request:function(){
     var that = this;
+    console.log('获取的token' + wx.getStorageSync('token'))
     network.GET(
       'index?token=' + wx.getStorageSync('token'),
       // 'http://192.168.1.37:8666/index',
@@ -189,9 +189,6 @@ Page({
   //获取数据
   getData: function (res){
     // res = index_trans.getIndexData()
-    if (res == null){
-      return
-    }
     
     this.animation(parseFloat(res.today_succ_trans_money.today_succ_transMoney))
     //折线图
@@ -240,6 +237,11 @@ Page({
       today_succ_transMoney_rate: res.today_succ_trans_money.today_succ_transMoney_rate,
       //合作机构
       organization: index_trans.getOrgation(res),
+    })
+  },
+  loginOut: function () {
+    wx.redirectTo({
+      url: '../../index/index',
     })
   }
 

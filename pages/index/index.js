@@ -42,7 +42,7 @@ Page({
           if (res.code == 0)
           {
             wx.setStorageSync('token', res.data)
-            wx.switchTab({
+            wx.redirectTo({
               url: '../realtimedata/trans/trans',
             })
 

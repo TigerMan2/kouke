@@ -4,17 +4,7 @@
     "pages/realtimedata/trans/trans",
     "pages/realtimedata/chart/chart",
     "pages/index/index",
-    "pages/logs/logs",
-
-    "pages/analyse/list/list",
-    "pages/analyse/bill/bill",
-    "pages/analyse/bonus/bonus",
-    "pages/analyse/cooperation/index",
-    "pages/analyse/personas/personas",
-
-    "pages/manager/tenant/tenant",
-
-    "pages/user/index/index"
+    "pages/logs/logs"
     
   ],
   "window":{
@@ -28,29 +18,6 @@
     "connectSocket": 20000,
     "uploadFile": 20000,
     "downloadFile": 20000
-  },
-  "tabBar": {
-    "list": [{
-      "pagePath": "pages/realtimedata/trans/trans",
-      "text": "实时数据",
-      "iconPath": "images/tabbar1.png",
-      "selectedIconPath": "images/tabbar1_select.png"
-    },{
-      "pagePath": "pages/analyse/list/list",
-      "text": "数据分析",
-      "iconPath": "images/tabbar2.png",
-      "selectedIconPath": "images/tabbar2_select.png"
-    },{
-      "pagePath": "pages/manager/tenant/tenant",
-      "text": "商户管理",
-      "iconPath": "images/tabbar3.png",
-      "selectedIconPath": "images/tabbar1_select.png"
-    },{
-      "pagePath": "pages/user/index/index",
-      "text": "我的",
-      "iconPath": "images/tabbar4.png",
-      "selectedIconPath": "images/tabbar2_select.png"
-    }]
   },
   "debug": true
 }
