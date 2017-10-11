@@ -7,7 +7,6 @@ var util = require('../../../utils/util.js');
 var index_trans = require('../../../data/index_trans.js');
 var tools = require('../../../utils/tools.js');
 
-var lineChart = null;
 var startPos = null;
 var old_res = null;
 
@@ -196,7 +195,7 @@ Page({
     
     this.animation(parseFloat(res.today_succ_trans_money.today_succ_transMoney))
     //折线图
-    lineChart = wxChart.wxCharts(this.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.today_succ_trans_trend)), '成功交易', 'lineCanvas', 'line', false)
+    wxChart.wxCharts(this.createSimulationData(index_trans.getTimes(), index_trans.getValue(res.today_succ_trans_trend)), '成功交易', 'lineCanvas', 'line', false)
     //饼状图
     var pieData = res.today_succ_trans_money.today_region_commercial_tenant_count_rate
     wxChart.wxPieComplete(index_trans.createPieData(pieData),'pieCanvas');
