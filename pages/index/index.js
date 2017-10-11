@@ -10,9 +10,9 @@ var reg = require('../../utils/tools.js');
 Page({
   data: {
     // 用户名
-    username: '13800138000',
+    username: '',
     //密码
-    password: '138000',
+    password: '',
   },
   onLoad: function () {
     

@@ -238,11 +238,6 @@ Page({
       //合作机构
       organization: index_trans.getOrgation(res),
     })
-  },
-  loginOut: function () {
-    wx.redirectTo({
-      url: '../../index/index',
-    })
   }
 
 })
