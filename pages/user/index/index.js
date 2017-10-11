@@ -62,5 +62,10 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  loginOut:function(){
+    wx.redirectTo({
+      url: '../../index/index',
+    })
   }
 })
