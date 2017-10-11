@@ -155,6 +155,5 @@
       </view>  
     </view>  
   </view>
-<button bindtap='loginOut'>退出</button>
-
  </view>
+ <button bindtap='loginOut'>退出</button>
